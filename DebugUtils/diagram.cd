@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Segoe UI" Size="9" />
+  <Comment CommentText="Listners">
+    <Position X="7.75" Y="0.5" Height="0.291" Width="6.54" />
+  </Comment>
+  <Comment CommentText="Filters">
+    <Position X="15" Y="0.5" Height="0.291" Width="6.54" />
+  </Comment>
+  <Comment CommentText="Debugger">
+    <Position X="0.5" Y="0.5" Height="0.291" Width="6.54" />
+  </Comment>
+  <Comment CommentText="Exception Manager">
+    <Position X="7.75" Y="10.75" Height="0.291" Width="6.54" />
+  </Comment>
+  <Comment CommentText="Performance Manager">
+    <Position X="0.5" Y="10.783" Height="0.291" Width="6.54" />
+  </Comment>
+  <Comment CommentText="String Table">
+    <Position X="15" Y="10.75" Height="0.291" Width="6.54" />
+  </Comment>
+  <Class Name="LGratian.Debugger.DebugSettingsTemplate" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>DebugSettings.cs</FileName>
+      <HashCode>ACBAAAAAAAAgAggAAAAAAkAFBQAAQAAQwAAAAAAgAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LGratian.Debugger.DebugSettings">
+    <Position X="5.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>DebugSettings.cs</FileName>
+      <HashCode>AAAAgIAAAAAAAAAAiAAAAAAAAgAAAAAAgAABIAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.CustomDataEventArgs" Collapsed="true">
+    <Position X="7.75" Y="16" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>ExceptionManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LGratian.Debugger.ExceptionManager">
+    <Position X="7.75" Y="11.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>ExceptionManager.cs</FileName>
+      <HashCode>AIQAAAABAAAEAAKAICCAiIBUABAAACGQAAAWAQJQAgA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.PerformanceIteration">
+    <Position X="4.5" Y="11.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>PerformanceManager.cs</FileName>
+      <HashCode>IAEAAAAIIAACAAAAAEAAAAAAIAAgIAAAAAAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.PerformanceEvent">
+    <Position X="2.5" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>PerformanceManager.cs</FileName>
+      <HashCode>BAQAIAQACCAAABACAgIkAQcIAABABAQAIIAAACCAAAg=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.PerformanceManager">
+    <Position X="0.5" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>PerformanceManager.cs</FileName>
+      <HashCode>AAAAACAAAAAAggBAKAAAAACAAAgIAwMEAAAAAEICCCA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.StringTable">
+    <Position X="15" Y="11.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>StringTable.cs</FileName>
+      <HashCode>AAIAAAAAAAAAAABAKAIARAAAAAAAAAEBAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.CrashNotifiers.DeveloperTaskDialogNotifier" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="13.75" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>CrashNotifiers.cs</FileName>
+      <HashCode>AgAAgAAAQAAAAAAAAAQAUABAAAEAAEgAAAAAAAAgAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LGratian.Debugger.CrashNotifiers.UserTaskDialogNotifier" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>CrashNotifiers.cs</FileName>
+      <HashCode>IAECkAEQQAQAAAAAGAQAcABAAAGAECAYAAAAAQBQggA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LGratian.Debugger.IterationNotifiers.IterationNotifier" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="16" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>IterationNotifiers.cs</FileName>
+      <HashCode>AAAAACAAQAQAAAQBAAAAAAAAAgAAAAAABAAAAgAAAAg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LGratian.Debugger.DebugMessage">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>AAABAAAAAAAAAAAAAAAAABAAAAgBAAAAAAAAAAAAgCA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LGratian.Debugger.DebugOptions">
+    <Position X="3.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>AAAAAAAAAAACIoIAAAAAAAAgAAAAAEAYAAAAQQAgICQ=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.DBG">
+    <Position X="0.5" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>wiAUjAgAQAiAIsgGwEIQAYCEGgEAYAADIACBYAQCZBA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="LGratian.Debugger.DBG.DebugSettings" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Debugger.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+  </Class>
+  <Class Name="LGratian.Debugger.Listners.ConsoleListner" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>Listners.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIIAAAAAAABAAAAAAAAAQAAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Class Name="LGratian.Debugger.Listners.DebugListnerBase" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Listners.cs</FileName>
+      <HashCode>CAAEAAAAAQAAIIAAQAAAABAAyAAAEAAABAAAAAChiAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="LGratian.Debugger.Filters.ErrorMessageFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Filters.cs</FileName>
+      <HashCode>AAAAhAAAIAAAIIAAAABAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="LGratian.Debugger.Filters.WarningMessageFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Filters.cs</FileName>
+      <HashCode>AAAAhAAAIAAAIIAAAABAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="LGratian.Debugger.Filters.UnknownMessageFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Filters.cs</FileName>
+      <HashCode>AAAAhAAAIAAAIIAAAABAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="LGratian.Debugger.Filters.NamespaceMessageFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Filters.cs</FileName>
+      <HashCode>AAAAhAAAIAAAIIAAAABAAAAAAAAAIAAQAAAAAAAACAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="LGratian.Debugger.Filters.MethodMessageFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Filters.cs</FileName>
+      <HashCode>AAAAhAAAIAAAIIAAAABgAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="LGratian.Debugger.StackSegment">
+    <Position X="3.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>AAEAAAAAABAAACAAAAAQAAAAAAABAAAABAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="LGratian.Debugger.ICrashNotifier">
+    <Position X="10.25" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>ExceptionManager.cs</FileName>
+      <HashCode>AAAAgAAAQAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LGratian.Debugger.IPerformanceIterationNotifier">
+    <Position X="4.5" Y="13.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>PerformanceManager.cs</FileName>
+      <HashCode>AAAAAAAAQAAAAAQAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LGratian.Debugger.IDebugListner">
+    <Position X="7.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIIAAQAAAABAAAAAAEAAAAAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LGratian.Debugger.IDebugMessageFilter">
+    <Position X="15" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>AAAAgAAAIAAAIIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="LGratian.Debugger.IDebugSettings" Collapsed="true">
+    <Position X="5.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>ACBAAAAAAAAgAAgAAAAAAkAFBQAAQAAQwAAAAAAgAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="LGratian.Debugger.DebugMessageType">
+    <Position X="5.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAAAAAABA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LGratian.Debugger.MessageFilterImplication">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Debugger.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="LGratian.Debugger.CustomDataRetrievalDelegate" Collapsed="true">
+    <Position X="7.75" Y="17" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>ExceptionManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="LGratian.Debugger.TimeEllapsedDelegate" Collapsed="true">
+    <Position X="0.5" Y="16" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>PerformanceManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAABAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>

@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceViewerControl", "PerfViewerControl\PerformanceViewerControl.csproj", "{F5CAD2CC-6D47-4548-AF6C-9BDEFE682DF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerformanceViewer", "PerfViewer\PerformanceViewer.csproj", "{0F2D2DD7-BB2E-49B0-9AC7-060953D25BAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugUtils", "DebugUtils\DebugUtils.csproj", "{A3F3D314-84E1-4E62-8CFB-EE0F8BA0FFFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5CAD2CC-6D47-4548-AF6C-9BDEFE682DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5CAD2CC-6D47-4548-AF6C-9BDEFE682DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5CAD2CC-6D47-4548-AF6C-9BDEFE682DF5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F5CAD2CC-6D47-4548-AF6C-9BDEFE682DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5CAD2CC-6D47-4548-AF6C-9BDEFE682DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5CAD2CC-6D47-4548-AF6C-9BDEFE682DF5}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F2D2DD7-BB2E-49B0-9AC7-060953D25BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2D2DD7-BB2E-49B0-9AC7-060953D25BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2D2DD7-BB2E-49B0-9AC7-060953D25BAE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F2D2DD7-BB2E-49B0-9AC7-060953D25BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2D2DD7-BB2E-49B0-9AC7-060953D25BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2D2DD7-BB2E-49B0-9AC7-060953D25BAE}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3F3D314-84E1-4E62-8CFB-EE0F8BA0FFFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F3D314-84E1-4E62-8CFB-EE0F8BA0FFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F3D314-84E1-4E62-8CFB-EE0F8BA0FFFF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3F3D314-84E1-4E62-8CFB-EE0F8BA0FFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F3D314-84E1-4E62-8CFB-EE0F8BA0FFFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F3D314-84E1-4E62-8CFB-EE0F8BA0FFFF}.Release|x64.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = 
+	EndGlobalSection
+EndGlobal

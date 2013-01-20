@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <!--   VSdocman config file for current project/solution.-->
+  <activeProfile>default</activeProfile>
+  <appSettings>
+    <add key="VBdocman_addSee" value="-1" />
+    <add key="VBdocman_addParam" value="-1" />
+    <add key="VBdocman_addReturn" value="-1" />
+    <add key="VBdocman_addDescription" value="-1" />
+    <add key="VBdocman_addRem" value="-1" />
+    <add key="VBdocman_addSame" value="0" />
+    <add key="VBdocman_addExample" value="-1" />
+    <add key="VBdocman_addException" value="-1" />
+    <add key="VBdocman_addAuthor" value="0" />
+    <add key="VBdocman_addRevision" value="0" />
+    <add key="VBdocman_addVersion" value="0" />
+    <add key="VBdocman_addIncludeSource" value="0" />
+    <add key="VBdocman_addUser1" value="0" />
+    <add key="VBdocman_addUser2" value="0" />
+    <add key="VBdocman_addUser3" value="0" />
+    <add key="VBdocman_addUser4" value="0" />
+    <add key="VBdocman_addUser5" value="0" />
+    <add key="VBdocman_user1Name" value="user1" />
+    <add key="VBdocman_user2Name" value="user2" />
+    <add key="VBdocman_user3Name" value="user3" />
+    <add key="VBdocman_user4Name" value="user4" />
+    <add key="VBdocman_user5Name" value="user5" />
+    <add key="VBdocman_user1Default" value="" />
+    <add key="VBdocman_user2Default" value="" />
+    <add key="VBdocman_user3Default" value="" />
+    <add key="VBdocman_user4Default" value="" />
+    <add key="VBdocman_user5Default" value="" />
+    <add key="VBdocman_user1Label" value="User Field 1" />
+    <add key="VBdocman_user2Label" value="User Field 2" />
+    <add key="VBdocman_user3Label" value="User Field 3" />
+    <add key="VBdocman_user4Label" value="User Field 4" />
+    <add key="VBdocman_user5Label" value="User Field 5" />
+    <add key="VBdocman_comNonCommented" value="-1" />
+    <add key="VBdocman_comPublic" value="-1" />
+    <add key="VBdocman_comPrivate" value="0" />
+    <add key="VBdocman_comFriend" value="0" />
+    <add key="VBdocman_comProtected" value="0" />
+    <add key="VBdocman_comProtectedFriend" value="0" />
+    <add key="VBdocman_comMethod" value="-1" />
+    <add key="VBdocman_comStdModule" value="0" />
+    <add key="VBdocman_comObject" value="-1" />
+    <add key="VBdocman_comForm" value="-1" />
+    <add key="VBdocman_comProperty" value="-1" />
+    <add key="VBdocman_comEvent" value="-1" />
+    <add key="VBdocman_comVariable" value="0" />
+    <add key="VBdocman_comConstant" value="0" />
+    <add key="VBdocman_comEnumeration" value="0" />
+    <add key="VBdocman_comStructure" value="0" />
+    <add key="VBdocman_comDelegate" value="0" />
+    <add key="VBdocman_comInterface" value="0" />
+    <add key="VBdocman_comAttribute" value="0" />
+    <add key="VBdocman_comEventDecl" value="0" />
+    <add key="VBdocman_comDeclare" value="0" />
+    <add key="VBdocman_comContextID" value="0" />
+    <add key="VBdocman_comWriteDescription" value="-1" />
+    <add key="VBdocman_useConditionalCompilation" value="0" />
+    <add key="VBdocman_conditionalConstants" value="" />
+    <add key="VBdocman_showFormsSeparate" value="0" />
+    <add key="VBdocman_indentMode" value="0" />
+    <add key="VBdocman_addingMode" value="0" />
+    <add key="VBdocman_insertSourceGlobal" value="0" />
+    <add key="VBdocman_unbreakSourceLines" value="0" />
+    <add key="VBdocman_removeAttributes" value="0" />
+    <add key="VBdocman_generateVbSyntax" value="-1" />
+    <add key="VBdocman_generateCsharpSyntax" value="-1" />
+    <add key="VBdocman_generateCppSyntax" value="-1" />
+    <add key="VBdocman_generateJscriptSyntax" value="-1" />
+    <add key="VBdocman_supportedPlatforms" value="Windows 98, Windows 2000 SP4, Windows Millennium Edition, Windows Server 2003, Windows XP Media Center Edition, Windows XP Professional x64 Edition, Windows XP SP2, Windows XP Starter Edition" />
+    <add key="VBdocman_supportedNetFramework" value="3.0, 2.0, 1.1, 1.0" />
+    <add key="VBdocman_supportedNetCompactFramework" value="2.0, 1.0" />
+    <add key="VBdocman_supportedXnaFramework" value="1.0" />
+    <add key="VBdocman_commentStyleRecognize" value="3" />
+    <add key="VBdocman_xmlCommentLinePrefix" value="'''" />
+    <add key="VBdocman_xmlCommentLinePrefixCsharp" value="///" />
+    <add key="VBdocman_hxcompPath" value="" />
+    <add key="VBdocman_customVar1" value="" />
+    <add key="VBdocman_customVar2" value="" />
+    <add key="VBdocman_customVar3" value="" />
+    <add key="VBdocman_autoUpdateParams" value="0" />
+    <add key="VBdocman_wordWrapLength" value="80" />
+    <add key="VBdocman_autoInsertEOL" value="0" />
+    <add key="VBdocman_useModalEditor" value="-1" />
+    <add key="VBdocman_nonModalEditorDockable" value="-1" />
+    <add key="VBdocman_nonModalEditorAsToolwindow" value="-1" />
+    <add key="VBdocman_nonModalEditorAutoUpdate" value="0" />
+    <add key="VBdocman_nonModalEditorAutoApply" value="-1" />
+    <add key="VBdocman_titlePageText" value="" />
+    <add key="VBdocman_rootNamespaceText" value="" />
+    <add key="VBdocman_rootNamespaceCommentStyle" value="2" />
+    <add key="VBdocman_pageFooterText" value="Generated by VSdocman" />
+    <add key="VBdocman_outputPath" value="E:\documents\Gratian\Documents\Visual Studio 2008\Projects\DebugUtils\DebugUtils\VSdoc\" />
+    <add key="VBdocman_templateFolder" value="C:\Program Files\VSdocman\Templates" />
+    <add key="VBdocman_externalFilesFolder" value="" />
+    <add key="VBdocman_fileNamingConvention" value="1" />
+    <add key="VBdocman_templateLocale" value="en-US" />
+    <add key="VBdocman_templatePath" value="chm_msdn2.vbdt" />
+    <add key="VBdocman_enumSorting" value="1" />
+    <add key="VBdocman_comModules_AbstractObjects.cs" value="On" />
+    <add key="VBdocman_comModules_DebugAttributes.cs" value="On" />
+    <add key="VBdocman_comModules_DebugerDefinitions.cs" value="On" />
+    <add key="VBdocman_comModules_Debugger.cs" value="On" />
+    <add key="VBdocman_comModules_DelegateHelper.cs" value="On" />
+    <add key="VBdocman_comModules_ExceptionManager.cs" value="On" />
+    <add key="VBdocman_comModules_Filters.cs" value="On" />
+    <add key="VBdocman_comModules_Listeners...ConsoleListener.cs" value="On" />
+    <add key="VBdocman_comModules_Listeners...TextFileListener.cs" value="On" />
+    <add key="VBdocman_comModules_Listeners...WCF...DebugService.cs" value="On" />
+    <add key="VBdocman_comModules_Listeners...WCF...WCFListener.cs" value="On" />
+    <add key="VBdocman_comModules_ObjectCounter.cs" value="On" />
+    <add key="VBdocman_comModules_PerformanceManager.cs" value="On" />
+    <add key="VBdocman_comModules_Properties...AssemblyInfo.cs" value="On" />
+    <add key="VBdocman_comModules_StringTable.cs" value="On" />
+    <add key="VBdocman_comModules_WinSAT.cs" value="On" />
+  </appSettings>
+</configuration>
