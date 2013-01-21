@@ -1,7 +1,7 @@
 DebugUtils
 ==========
 
-A library implementing various utilities to help logging and debugging.  
+A library implementing various utilities to help logging, debugging and performance analysis.  
 It is written in *C#* and intended to be used in *.NET* projects.  
 
 **Features:**  
