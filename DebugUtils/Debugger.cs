@@ -51,7 +51,8 @@ namespace DebugUtils.Debugger {
     /// The primary class that handless debugging.
     /// Most of the other classes are exposed as static members withing this class.
     /// All methods and fields are defined as "static".
-    /// Provides support for serialization of the stored messages in XML and ZIP compressed XML format and generating of HTML reports.
+    /// Provides support for serialization of the stored messages in XML and ZIP 
+    /// compressed XML format and generating of HTML reports.
     /// </summary>
     public class Debug {
         /// <summary>
@@ -83,6 +84,15 @@ namespace DebugUtils.Debugger {
         private static List<IDebugListener> listeners;
         private static List<IDebugMessageFilter> filters;
         private static Stack<DebugContext> contextStack;
+        private static bool _storeMessages;
+        private static int _messageStoreCapacity = DefaultMessageStoryCapacity;
+        private static bool _breakOnFailedAssertion;
+        private static bool _logToDebugger;
+        private static bool _saveStackInfo;
+        private static bool _debuggerEnabled;
+        private static string _debugMessageViewerPath;
+        private static string _debugMessageViewerEnvironmentVariable;
+        private static Color _color;
 
         /// <summary>
         /// The message notifier used by the debugger.
@@ -106,7 +116,6 @@ namespace DebugUtils.Debugger {
                 }
                 else {
                     return listeners.Count;
-
                 }
             }
         }
@@ -125,7 +134,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-        private static bool _storeMessages;
         /// <summary>
         /// Indicates whether or not the messages should be stored.
         /// </summary>
@@ -138,8 +146,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-        private static int _messageStoreCapacity = DefaultMessageStoryCapacity;
-        /// <summary>
         /// The the capacity of the message store.
         /// </summary>
         /// <remarks>
@@ -156,21 +162,15 @@ namespace DebugUtils.Debugger {
                 _messageStoreCapacity = value;
             }
         }
-
-        private static bool _breakOnFailedAssertion;
+        
         /// <summary>
         /// Indicates whether or not the application should thrown an exception when an assertion fails.
         /// </summary>
         public static bool BreakOnFailedAssertion {
-            get {
-                return _breakOnFailedAssertion;
-            }
-            set {
-                _breakOnFailedAssertion = value;
-            }
+            get { return _breakOnFailedAssertion; }
+            set { _breakOnFailedAssertion = value; }
         }
-
-        private static bool _logToDebugger;
+        
         /// <summary>
         /// Indicates whether or not to log the message to the debugger.
         /// </summary>
@@ -178,23 +178,17 @@ namespace DebugUtils.Debugger {
             get { return _logToDebugger; }
             set { _logToDebugger = value; }
         }
-
-        private static bool _saveStackInfo;
+        
         /// <summary>
         /// Indicates whether or not stack information should be stored for each message.
         /// </summary>
         /// <remarks>True by default.</remarks>
         public static bool SaveStackInfo {
-            get {
-                return _saveStackInfo;
-            }
-            set {
-                _saveStackInfo = value;
-            }
+            get { return _saveStackInfo; }
+            set { _saveStackInfo = value; }
         }
 
-
-        private static bool _debuggerEnabled;
+        
         /// <summary>
         /// Indicates whether or not the debugger is enabled or not.
         /// </summary>
@@ -203,9 +197,7 @@ namespace DebugUtils.Debugger {
             get { return _debuggerEnabled; }
             set { _debuggerEnabled = value; }
         }
-
-
-        private static string _debugMessageViewerPath;
+        
         /// <summary>
         /// Specifies the path of the message viewer application.
         /// </summary>
@@ -217,9 +209,7 @@ namespace DebugUtils.Debugger {
             get { return _debugMessageViewerPath; }
             set { _debugMessageViewerPath = value; }
         }
-
-
-        private static string _debugMessageViewerEnvironmentVariable;
+        
         /// <summary>
         /// Specifies the environmental variable used to locate
         /// the viewer application.
@@ -240,7 +230,6 @@ namespace DebugUtils.Debugger {
                        (_debugMessageViewerEnvironmentVariable != null && _debugMessageViewerEnvironmentVariable.Length > 0));
             }
         }
-
 
         /// <summary>
         /// The number of messages stored in the debugger store.
@@ -263,8 +252,6 @@ namespace DebugUtils.Debugger {
             set { messages = value; }
         }
 
-
-        private static Color _color;
         /// <summary>
         /// The color that should be associated with the message.
         /// </summary>
@@ -314,6 +301,7 @@ namespace DebugUtils.Debugger {
             // assign current time
             debugMessage.Type = type;
             debugMessage.Time = DateTime.Now;
+            debugMessage.Color = _color;
 
             // set context
             if(contextStack.Count > 0) {
@@ -323,9 +311,6 @@ namespace DebugUtils.Debugger {
                 debugMessage.Context = null;
             }
 
-            // set color
-            debugMessage.Color = _color;
-
             // set message
             if(message != null) {
                 debugMessage.Message = message;
@@ -334,10 +319,8 @@ namespace DebugUtils.Debugger {
             // set thread info
             debugMessage.ThreadName = Thread.CurrentThread.Name;
             debugMessage.ThreadId = AppDomain.GetCurrentThreadId();
-
             return debugMessage;
         }
-
 
         /// <summary>
         /// Allocates and initializes a message with its type.
@@ -348,17 +331,13 @@ namespace DebugUtils.Debugger {
             return InitDebugMessage(type, null);
         }
 
-
         /// <summary>
         /// Allocates an empty message.
         /// </summary>
         /// <returns>A <typeparamref name="DebugMessage"/> object.</returns>
         private static DebugMessage InitDebugMessage() {
             DebugMessage debugMessage = new DebugMessage();
-
-            // assign current time
             debugMessage.Time = DateTime.Now;
-
             return debugMessage;
         }
 
@@ -374,7 +353,6 @@ namespace DebugUtils.Debugger {
                 }
             }
         }
-
 
         /// <summary>
         /// Tries to add the given message to the list.
@@ -392,19 +370,16 @@ namespace DebugUtils.Debugger {
                     messages.RemoveAt(0);
                 }
 
-                // finally, add the message to the list
                 messages.Add(message);
             }
         }
-
 
         /// <summary>
         /// Filter the message.
         /// </summary>
         /// <param name="message">The message to filter.</param>
         /// <returns>
-        /// true if the message is allowed;
-        /// false, otherwise.
+        /// true if the message is allowed; false, otherwise.
         /// </returns>
         private static bool ExcludeMessage(DebugMessage message) {
             if(message == null) {
@@ -415,7 +390,6 @@ namespace DebugUtils.Debugger {
                 bool? result = null;
 
                 for(int i = 0; i < filters.Count; i++) {
-                    // skip disabled filters
                     if(filters[i].Enabled == false) {
                         continue;
                     }
@@ -435,7 +409,7 @@ namespace DebugUtils.Debugger {
                             result = filters[i].AllowMessage(message);
                         }
 
-                        if(result == true) {
+                        if(result.HasValue && result.Value) {
                             return true;
                         }
                     }
@@ -452,7 +426,6 @@ namespace DebugUtils.Debugger {
             return false;
         }
 
-
         /// <summary>
         /// Tries to send the given message to all attached listeners.
         /// </summary>
@@ -467,7 +440,6 @@ namespace DebugUtils.Debugger {
                 return;
             }
 
-            // filter the message first
             if(ExcludeMessage(message)) {
                 return;
             }
@@ -479,16 +451,13 @@ namespace DebugUtils.Debugger {
                     continue;
                 }
 
-                // check if the listener is opened. If not,open it now.
                 if(listeners[i].IsOpen == false) {
                     listeners[i].Open();
                 }
 
-                // send the message
                 listeners[i].DumpMessage(message);
             }
         }
-
 
         /// <summary>
         /// Shows the debug message using the attached debug message notifier.
@@ -499,15 +468,15 @@ namespace DebugUtils.Debugger {
                 return;
             }
 
-            if(DebugMessageNotifier != null && DebugMessageNotifier.Enabled == true) {
+            if(DebugMessageNotifier != null && DebugMessageNotifier.Enabled) {
                 DebugMessageNotifier.Message = message;
 
                 if(DebugMessageNotifier.Launch() == false) {
-                    Console.WriteLine("Couldn't launch IDebugMessageNotifier {0}", DebugMessageNotifier.GetType().Name);
+                    Console.WriteLine("Couldn't launch IDebugMessageNotifier {0}", 
+                                      DebugMessageNotifier.GetType().Name);
                 }
             }
         }
-
 
         /// <summary>
         /// Tries to add to the message all the stack information available at the given moment.
@@ -538,26 +507,17 @@ namespace DebugUtils.Debugger {
                     continue;
                 }
 
-                //if (frame.GetMethod().DeclaringType.Namespace == "System")
-                //{
-                //	break;
-                //}
-
                 // copy the relevant data
                 segment.File = frame.GetFileName();
                 segment.DeclaringObject = frame.GetMethod().DeclaringType.Name;
                 segment.DeclaringNamespace = frame.GetMethod().DeclaringType.Namespace;
                 segment.Method = frame.GetMethod().ToString();
-
                 AddMethodType(frame, segment);
 
                 segment.Line = frame.GetFileLineNumber();
-
-                // add the segment to the list
                 message.StackSegments.Add(segment);
             }
         }
-
 
         /// <summary>
         /// Add the Method type to the specified StackSegment
@@ -584,7 +544,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-
         /// <summary>
         /// Tries to add the stack information for the Method that generated the given message.
         /// </summary>
@@ -603,7 +562,6 @@ namespace DebugUtils.Debugger {
                 message.BaseMethod.DeclaringObject = frame.GetMethod().DeclaringType.Name;
                 message.BaseMethod.DeclaringNamespace = frame.GetMethod().DeclaringType.Namespace;
                 message.BaseMethod.Method = frame.GetMethod().ToString();
-
                 AddMethodType(frame, message.BaseMethod);
 
                 message.BaseMethod.Line = frame.GetFileLineNumber();
@@ -623,8 +581,8 @@ namespace DebugUtils.Debugger {
 
             for(int i = 0; i < stackInfo.FrameCount; i++) {
                 StackFrame frame = stackInfo.GetFrame(i);
-
                 MethodBase Method = frame.GetMethod();
+
                 if(Method.ReflectedType.Namespace != typeof(Debug).Namespace) {
                     return frame;
                 }
@@ -635,7 +593,8 @@ namespace DebugUtils.Debugger {
 
 
         /// <summary>
-        /// Get the debugger settings. Custom settings can be specified on a object/Method basis using the DebugOptions attribute.
+        /// Get the debugger settings. Custom settings can be specified on a object/method 
+        /// basis using the DebugOptions attribute.
         /// </summary>
         /// <returns>
         /// The debug settings attached to the calling method.
@@ -647,7 +606,6 @@ namespace DebugUtils.Debugger {
             bool debugAttributeFound = false;
             DebugOptions options = new DebugOptions();
             DebugSettings settings = new DebugSettings();
-
             topFrame = GetTopMethod();
 
             if(topFrame != null) {
@@ -757,7 +715,6 @@ namespace DebugUtils.Debugger {
             return settings;
         }
 
-
         /// <summary>
         /// Get the format string.
         /// </summary>
@@ -774,7 +731,6 @@ namespace DebugUtils.Debugger {
 
             return format;
         }
-
 
         #endregion
 
@@ -796,8 +752,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         /// <param name="listener">The listener to be added</param>
         /// <returns>
-        /// true if the listener could be added;
-        /// false, otherwise.
+        /// true if the listener could be added; false, otherwise.
         /// </returns>
         public static bool AddListner(IDebugListener listener) {
             if(listener == null) {
@@ -816,12 +771,9 @@ namespace DebugUtils.Debugger {
                 }
             }
 
-            // add the listener to the list
             listeners.Add(listener);
-
             return true;
         }
-
 
         /// <summary>
         /// Detach a listener from the debugger.
@@ -842,7 +794,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-
         /// <summary>
         /// Detach all listeners attached to the debugger
         /// </summary>
@@ -855,7 +806,6 @@ namespace DebugUtils.Debugger {
                 RemoveListner(listeners[0].ListnerId);
             }
         }
-
 
         /// <summary>
         /// Returns a listener by it's Id.
@@ -876,18 +826,15 @@ namespace DebugUtils.Debugger {
                 }
             }
 
-            // not found
             return null;
         }
-
 
         /// <summary>
         /// Returns an listener by knowing it's index.
         /// </summary>
         /// <param name="index">The index of the listener.</param>
         /// <returns>
-        /// A <typeparamref name="IDebugListener"/> object if the listener was found;
-        /// null, otherwise.
+        /// A <typeparamref name="IDebugListener"/> object if the listener was found; null, otherwise.
         /// </returns>
         public static IDebugListener GetListnerByIndex(int index) {
             if(listeners == null || listeners.Count == 0 || index < 0 || index >= listeners.Count) {
@@ -906,8 +853,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         /// <param name="filter">The filter to be attached.</param>
         /// <returns>
-        /// true if the filter could be attached;
-        /// false, otherwise.
+        /// true if the filter could be attached; false, otherwise.
         /// </returns>
         public static bool AddFilter(IDebugMessageFilter filter) {
             if(filter == null) {
@@ -926,10 +872,8 @@ namespace DebugUtils.Debugger {
             }
 
             filters.Add(filter);
-
             return true;
         }
-
 
         /// <summary>
         /// Detach a filter from the debugger.
@@ -948,7 +892,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-
         /// <summary>
         /// Detach all filters from the debugger.
         /// </summary>
@@ -960,14 +903,12 @@ namespace DebugUtils.Debugger {
             filters.Clear();
         }
 
-
         /// <summary>
         /// Returns a filter by knowing it's Id.
         /// </summary>
         /// <param name="filterId">The Id of the filter.</param>
         /// <returns>
-        /// A <typeparamref name="IDebugMessageFilter"/> object if the filter was found;
-        /// null, otherwise.
+        /// A <typeparamref name="IDebugMessageFilter"/> object if the filter was found; null, otherwise.
         /// </returns>
         public static IDebugMessageFilter GetFilterById(int filterId) {
             if(filters == null || filters.Count == 0) {
@@ -982,7 +923,6 @@ namespace DebugUtils.Debugger {
 
             return null;
         }
-
 
         /// <summary>
         /// Return a filter by knowing it's index.
@@ -1014,7 +954,6 @@ namespace DebugUtils.Debugger {
             Assert(value, null);
         }
 
-
         /// <summary>
         /// Performs an assertion.
         /// </summary>
@@ -1026,7 +965,6 @@ namespace DebugUtils.Debugger {
         public static void Assert(bool value, string format, params object[] args) {
             DebugSettings settings = GetSettings();
 
-            // debugger disabled
             if(settings.Debug == false) {
                 return;
             }
@@ -1047,17 +985,17 @@ namespace DebugUtils.Debugger {
                 }
 
                 // create the message
-                DebugMessage message = InitDebugMessage(DebugMessageType.Error, formattedMessage != null ? formattedMessage : DefaultAssertMesssage);
+                DebugMessage message = InitDebugMessage(DebugMessageType.Error, formattedMessage != null ? 
+                                                        formattedMessage : DefaultAssertMesssage);
                 AddBaseMethodInfoToMessage(message);
 
-                if(settings.SaveStack == true) {
+                if(settings.SaveStack) {
                     AddStackInfoToMessage(message);
                 }
 
-                if(settings.Store == true) {
+                if(settings.Store) {
                     AddMessageToStore(message);
                 }
-
 
                 // send the message to all the listeners
                 if(settings.SendToListners) {
@@ -1072,7 +1010,7 @@ namespace DebugUtils.Debugger {
                     SendMessageToNotifier(message);
                 }
 
-                if(settings.Assert == true) {
+                if(settings.Assert) {
                     throw new DebugException(formattedMessage != null ? formattedMessage : DefaultAssertMesssage);
                 }
             }
@@ -1094,7 +1032,6 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            // debugger disabled
             if(settings.Debug == false) {
                 return;
             }
@@ -1115,15 +1052,15 @@ namespace DebugUtils.Debugger {
                     }
                 }
 
-
-                DebugMessage message = InitDebugMessage(DebugMessageType.Error, formattedMessage != null ? formattedMessage : DefaultAssertTypeMesssage);
+                DebugMessage message = InitDebugMessage(DebugMessageType.Error, formattedMessage != null ? 
+                                                        formattedMessage : DefaultAssertTypeMesssage);
                 AddBaseMethodInfoToMessage(message);
 
-                if(settings.SaveStack == true) {
+                if(settings.SaveStack) {
                     AddStackInfoToMessage(message);
                 }
 
-                if(settings.Store == true) {
+                if(settings.Store) {
                     AddMessageToStore(message);
                 }
 
@@ -1141,11 +1078,11 @@ namespace DebugUtils.Debugger {
                 }
 
                 if(settings.Assert) {
-                    throw new DebugException(formattedMessage != null ? formattedMessage : DefaultAssertTypeMesssage);
+                    throw new DebugException(formattedMessage != null ? 
+                                             formattedMessage : DefaultAssertTypeMesssage);
                 }
             }
         }
-
 
         /// <summary>
         /// Performs a type assertion.
@@ -1157,7 +1094,6 @@ namespace DebugUtils.Debugger {
             AssertType(obj, type, null);
         }
 
-
         /// <summary>
         /// Performs a null assertion.
         /// </summary>
@@ -1166,7 +1102,6 @@ namespace DebugUtils.Debugger {
         public static void AssertNotNull(object obj) {
             AssertNotNull(obj, null);
         }
-
 
         /// <summary>
         /// Performs a null assertion.
@@ -1193,13 +1128,13 @@ namespace DebugUtils.Debugger {
                 }
 
                 DebugSettings settings = GetSettings();
-
-                // debugger disabled
+                
                 if(settings.Debug == false) {
                     return;
                 }
 
-                DebugMessage message = InitDebugMessage(DebugMessageType.Error, formattedMessage != null ? formattedMessage : DefaultAssertNotNullMesssage);
+                DebugMessage message = InitDebugMessage(DebugMessageType.Error, formattedMessage != null ? 
+                                                        formattedMessage : DefaultAssertNotNullMesssage);
                 AddBaseMethodInfoToMessage(message);
 
                 if(settings.SaveStack) {
@@ -1224,7 +1159,8 @@ namespace DebugUtils.Debugger {
                 }
 
                 if(settings.Assert) {
-                    throw new DebugException(formattedMessage != null ? formattedMessage : DefaultAssertNotNullMesssage);
+                    throw new DebugException(formattedMessage != null ? formattedMessage :
+                                             DefaultAssertNotNullMesssage);
                 }
             }
         }
@@ -1245,13 +1181,11 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            // debugger disabled
             if(settings.Debug == false) {
                 return;
             }
 
             string formattedMessage = null;
-
             format = GetFormatString(format);
 
             try {
@@ -1287,7 +1221,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-
         /// <summary>
         /// Reports the given warning to the debugger.
         /// </summary>
@@ -1300,7 +1233,6 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            // debugger disabled
             if(settings.Debug == false) {
                 return;
             }
@@ -1341,7 +1273,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-
         /// <summary>
         /// Reports the given message to the debugger.
         /// </summary>
@@ -1354,7 +1285,6 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            // debugger disabled
             if(settings.Debug == false) {
                 return;
             }
@@ -1411,14 +1341,12 @@ namespace DebugUtils.Debugger {
             }
 
             DebugSettings settings = GetSettings();
-
-            // debugger disabled
+            
             if(settings.Debug == false) {
                 return;
             }
 
             string formattedMessage = null;
-
             format = GetFormatString(format);
 
             try {
@@ -1458,7 +1386,6 @@ namespace DebugUtils.Debugger {
             }
         }
 
-
         /// <summary>
         /// Reports the given data and message to the debugger.
         /// </summary>
@@ -1468,7 +1395,6 @@ namespace DebugUtils.Debugger {
             ReportData(DataType.Text, data, format, args);
         }
 
-
         /// <summary>
         /// Reports the given data and message to the debugger.
         /// </summary>
@@ -1477,7 +1403,6 @@ namespace DebugUtils.Debugger {
         public static void ReportData(byte[] data, string format, params object[] args) {
             ReportData(DataType.Binary, data, format, args);
         }
-
 
         /// <summary>
         /// Reports the given data and message to the debugger.
@@ -1489,7 +1414,6 @@ namespace DebugUtils.Debugger {
         }
 
         #endregion
-
 
         #region Serialization
 
@@ -1512,7 +1436,7 @@ namespace DebugUtils.Debugger {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<DebugMessage>));
                 writer = new StreamWriter(path);
 
-                if(writer.BaseStream.CanWrite == true) {
+                if(writer.BaseStream.CanWrite) {
                     serializer.Serialize(writer, messages);
                 }
                 else {
@@ -1531,7 +1455,6 @@ namespace DebugUtils.Debugger {
 
             return true;
         }
-
 
         /// <summary>
         /// Deserializes all stored messages from XML format.
@@ -1552,7 +1475,7 @@ namespace DebugUtils.Debugger {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<DebugMessage>));
                 reader = new StreamReader(path);
 
-                if(reader.BaseStream.CanRead == true) {
+                if(reader.BaseStream.CanRead) {
                     messages = (List<DebugMessage>)serializer.Deserialize(reader);
                 }
                 else {
@@ -1572,7 +1495,6 @@ namespace DebugUtils.Debugger {
             return true;
         }
 
-
         /// <summary>
         /// Serializes all stored messages in XML format.
         /// </summary>
@@ -1589,8 +1511,7 @@ namespace DebugUtils.Debugger {
             try {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<DebugMessage>));
 
-                // serialize the messages
-                if(memoryStream.CanWrite == true) {
+                if(memoryStream.CanWrite) {
                     serializer.Serialize(memoryStream, messages);
                 }
                 else {
@@ -1633,7 +1554,6 @@ namespace DebugUtils.Debugger {
 
                 // compress the stream from memory
                 GZipStream zipStream = new GZipStream(memoryStream, CompressionMode.Compress, true);
-
                 zipStream.Write(buffer, 0, (int)memoryMessages.Length);
                 zipStream.Close();
 
@@ -1670,8 +1590,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         /// <param name="path">The File to open.</param>
         /// <returns>
-        /// true if the viewer could be launched;
-        /// false, otherwise.
+        /// true if the viewer could be launched; false, otherwise.
         /// </returns>
         public static bool LaunchDebugMessageViewer(string path) {
             if(path == null) {
@@ -1859,7 +1778,6 @@ namespace DebugUtils.Debugger {
             return true;
         }
 
-
         /// <summary>
         /// Generate a report in HTML format about the stored debug messages
         /// </summary>
@@ -1894,7 +1812,6 @@ namespace DebugUtils.Debugger {
             contextStack.Push(context);
         }
 
-
         /// <summary>
         /// Enter a new message context and associate data with it.
         /// </summary>
@@ -1909,7 +1826,6 @@ namespace DebugUtils.Debugger {
             contextStack.Push(context);
         }
 
-
         /// <summary>
         /// Return to the previous context.
         /// </summary>
@@ -1918,7 +1834,6 @@ namespace DebugUtils.Debugger {
                 contextStack.Pop();
             }
         }
-
 
         /// <summary>
         /// Reset the color to the default one.

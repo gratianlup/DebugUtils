@@ -58,7 +58,6 @@ namespace DebugUtils.Debugger {
             }
 
             DirectoryInfo di = new DirectoryInfo(path);
-
             return di.Name;
         }
 

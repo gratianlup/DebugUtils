@@ -56,7 +56,6 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            // allow the message
             return false;
         }
 
@@ -89,7 +88,6 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            // allow the message
             return false;
         }
 
@@ -122,7 +120,6 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            // allow the message
             return false;
         }
 
@@ -177,7 +174,6 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            // allow the message
             return false;
         }
 
@@ -231,8 +227,7 @@ namespace DebugUtils.Debugger.Filters {
             if(Enabled && message.BaseMethod.DeclaringObject == _object) {
                 return true;
             }
-
-            // allow the message
+            
             return false;
         }
 
@@ -287,7 +282,6 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            // allow the message
             return false;
         }
 

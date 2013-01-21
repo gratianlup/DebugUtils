@@ -106,9 +106,7 @@ namespace DebugUtils.Debugger {
         /// Get the default color.
         /// </summary>
         public static Color DefaultColor {
-            get {
-                return Transparent;
-            }
+            get { return Transparent; }
         }
 
         #endregion
@@ -539,8 +537,7 @@ namespace DebugUtils.Debugger {
         /// Gets or sets the enabled state of the notifier.
         /// </summary>
         /// <remarks>
-        /// If Enabled is set to false the debugger no longer
-        /// launches the notifier.
+        /// If Enabled is set to false the debugger no longer launches the notifier.
         /// </remarks>
         bool Enabled { get; set; }
         DebugMessage Message { get; set; }

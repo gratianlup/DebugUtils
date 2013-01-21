@@ -181,7 +181,7 @@ namespace DebugUtils.Debugger.Listeners {
 
             Console.Write("FILE:      ");
 
-            if(TruncateFile == true) {
+            if(TruncateFile) {
                 FileInfo fi = new FileInfo(message.BaseMethod.File);
                 Console.WriteLine(fi.Name);
             }
@@ -191,7 +191,7 @@ namespace DebugUtils.Debugger.Listeners {
 
             Console.ResetColor();
 
-            if(UseStackInfo == true && message.HasStack == true) {
+            if(UseStackInfo && message.HasStack) {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\nSTACK:");
 
@@ -210,7 +210,7 @@ namespace DebugUtils.Debugger.Listeners {
                     Console.ResetColor();
                     Console.Write("FILE:   ");
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    if(TruncateFile == true) {
+                    if(TruncateFile) {
                         if(message.StackSegments[i].File != null) {
                             FileInfo fi = new FileInfo(message.StackSegments[i].File);
                             Console.WriteLine(fi.Name);

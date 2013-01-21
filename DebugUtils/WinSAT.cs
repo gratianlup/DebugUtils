@@ -53,9 +53,7 @@ namespace DebugUtils.Debugger {
         #region Properties
 
         public static bool IsAvailable {
-            get {
-                return Environment.OSVersion.Version.Major >= RequiredOSMajorVersion;
-            }
+            get { return Environment.OSVersion.Version.Major >= RequiredOSMajorVersion; }
         }
 
         private double _computerScore;
@@ -154,7 +152,6 @@ namespace DebugUtils.Debugger {
             try {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(file);
-
                 XmlElement root = doc.DocumentElement;
 
                 if(root != null) {
@@ -191,37 +188,39 @@ namespace DebugUtils.Debugger {
         public bool LoadWinSAT() {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.System);
 
-            if(path != null && path.Length > 0) {
-                path = path.Substring(0, path.Length - "system32".Length - (path[path.Length - 1] == '\\' ? 1 : 0));
-                path += WinSATStoreLocation;
+            if(string.IsNullOrEmpty(path)) {
+                return false;
+            }
 
-                if(Directory.Exists(path)) {
-                    string[] files = Directory.GetFiles(path, "*.xml");
+            path = path.Substring(0, path.Length - "system32".Length - (path[path.Length - 1] == '\\' ? 1 : 0));
+            path += WinSATStoreLocation;
 
-                    if(files.Length > 0) {
-                        // sort the files according to their creation time
-                        // and choose the latest one
-                        for(int i = 0; i < files.Length; i++) {
-                            for(int j = 0; j < files.Length; j++) {
-                                FileInfo fi = new FileInfo(files[i]);
-                                FileInfo fj = new FileInfo(files[j]);
+            if(Directory.Exists(path)) {
+                string[] files = Directory.GetFiles(path, "*.xml");
 
-                                if(fi.CreationTime > fj.CreationTime) {
-                                    string temp = files[j];
-                                    files[j] = files[i];
-                                    files[i] = temp;
-                                }
+                if(files.Length > 0) {
+                    // sort the files according to their creation time
+                    // and choose the latest one
+                    for(int i = 0; i < files.Length; i++) {
+                        for(int j = 0; j < files.Length; j++) {
+                            FileInfo fi = new FileInfo(files[i]);
+                            FileInfo fj = new FileInfo(files[j]);
+
+                            if(fi.CreationTime > fj.CreationTime) {
+                                string temp = files[j];
+                                files[j] = files[i];
+                                files[i] = temp;
                             }
                         }
-
-                        bool result = LoadWinSATXML(files[0]);
-
-                        if(result == true) {
-                            loaded = true;
-                        }
-
-                        return result;
                     }
+
+                    bool result = LoadWinSATXML(files[0]);
+
+                    if(result) {
+                        loaded = true;
+                    }
+
+                    return result;
                 }
             }
 

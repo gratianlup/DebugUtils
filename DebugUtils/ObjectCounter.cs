@@ -265,13 +265,13 @@ namespace DebugUtils.Debugger {
                 throw new ArgumentNullException("counter");
             }
 
-            if(counter.MaximumCount > 0 && counter.Count > counter.MaximumCount && counter.Enabled == true) {
+            if(counter.MaximumCount > 0 && counter.Count > counter.MaximumCount && counter.Enabled) {
                 if(OnObjectCountExceeded != null) {
                     OnObjectCountExceeded(counter.Type, counter.Name, counter.Count);
                 }
 
                 // show the notifier
-                if(ObjectCounterNotifier != null && ObjectCounterNotifier.Enabled == true) {
+                if(ObjectCounterNotifier != null && ObjectCounterNotifier.Enabled) {
                     ObjectCounterNotifier.CounterType = counter.Type;
                     ObjectCounterNotifier.CounterName = counter.Name;
                     ObjectCounterNotifier.CounterCount = counter.Count;
@@ -279,11 +279,13 @@ namespace DebugUtils.Debugger {
                     ObjectCounterNotifier.Counter = this;
 
                     if(ObjectCounterNotifier.Launch() == false) {
-                        Console.WriteLine("Couldn't launch IObjectCounterNotifier {0}", ObjectCounterNotifier.GetType().Name);
+                        Console.WriteLine("Couldn't launch IObjectCounterNotifier {0}", 
+                                          ObjectCounterNotifier.GetType().Name);
                     }
 
                     // check if the counter was disabled
-                    if(ObjectCounterNotifier.CounterEnabled.HasValue && ObjectCounterNotifier.CounterEnabled == false) {
+                    if(ObjectCounterNotifier.CounterEnabled.HasValue && 
+                       ObjectCounterNotifier.CounterEnabled == false) {
                         counter.Enabled = false;
                     }
                 }
@@ -462,8 +464,8 @@ namespace DebugUtils.Debugger {
                 throw new ArgumentNullException("type");
             }
 
-            int hash = counterName != null ? counterName.GetHashCode() :
-                                              type.GetHashCode();
+            int hash = counterName != null ? 
+                       counterName.GetHashCode() : type.GetHashCode();
 
             if(counters.ContainsKey(hash)) {
                 return ((ObjectCategory)counters[hash]).Count;
@@ -560,8 +562,8 @@ namespace DebugUtils.Debugger {
                 throw new ArgumentNullException("type");
             }
 
-            int hash = counterName != null ? counterName.GetHashCode() :
-                                              type.GetHashCode();
+            int hash = counterName != null ? 
+                       counterName.GetHashCode() : type.GetHashCode();
 
             if(counters.ContainsKey(hash)) {
                 return ((ObjectCategory)counters[hash]).Enabled;
@@ -599,8 +601,8 @@ namespace DebugUtils.Debugger {
                     throw new ArgumentNullException("type");
                 }
 
-                int hash = categoryName != null ? categoryName.GetHashCode() :
-                                                  type.GetHashCode();
+                int hash = categoryName != null ? 
+                           categoryName.GetHashCode() : type.GetHashCode();
 
                 if(counters.ContainsKey(hash)) {
                     ((ObjectCategory)counters[hash]).MaximumCount = maxCount;
@@ -629,8 +631,8 @@ namespace DebugUtils.Debugger {
                 throw new ArgumentNullException("type");
             }
 
-            int hash = categoryName != null ? categoryName.GetHashCode() :
-                                              type.GetHashCode();
+            int hash = categoryName != null ? 
+                       categoryName.GetHashCode() : type.GetHashCode();
 
             if(counters.ContainsKey(hash)) {
                 return ((ObjectCategory)counters[hash]).MaximumCount;
@@ -706,7 +708,6 @@ namespace DebugUtils.Debugger {
 
                 if(writer.BaseStream.CanWrite) {
                     writer.Write(GenerateSummary());
-
                     return true;
                 }
             }

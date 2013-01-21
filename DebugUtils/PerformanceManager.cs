@@ -363,7 +363,7 @@ namespace DebugUtils.Debugger {
             lock(lockObject) {
 
                 // stop the active iteration
-                if(activeIteration != null && watch.IsRunning == true) {
+                if(activeIteration != null && watch.IsRunning) {
                     Stop();
                 }
 
@@ -382,7 +382,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         public void Stop() {
             lock(lockObject) {
-                if(activeIteration != null && watch.IsRunning == true) {
+                if(activeIteration != null && watch.IsRunning) {
                     watch.Stop();
 
                     activeIteration.StartTime = (long)(new TimeSpan(DateTime.Now.Ticks).TotalMilliseconds) - watch.ElapsedMilliseconds;
@@ -402,8 +402,8 @@ namespace DebugUtils.Debugger {
                         // report to debugger
                         if(_reportTimeExceedingToDebugger) {
                             Debug.ReportWarning("Operation {0} (duration = {1}) exceeded maximum time of {2}",
-                                                    _name, activeIteration.Duration.TotalMilliseconds.ToString(),
-                                                    _maxTime.TotalMilliseconds.ToString());
+                                                _name, activeIteration.Duration.TotalMilliseconds.ToString(),
+                                                _maxTime.TotalMilliseconds.ToString());
                         }
                     }
 
@@ -423,7 +423,7 @@ namespace DebugUtils.Debugger {
         /// Increase the hit count of the running iteration.
         /// </summary>
         public void Hit() {
-            if(activeIteration != null && watch.IsRunning == true) {
+            if(activeIteration != null && watch.IsRunning) {
                 activeIteration.HitCount++;
             }
         }
@@ -584,8 +584,6 @@ namespace DebugUtils.Debugger {
             }
 
             PerformanceEvent e = new PerformanceEvent();
-
-            // add the event to the dictionary
             e.Name = name;
             e.Manager = this;
             _events.Add(name, e);

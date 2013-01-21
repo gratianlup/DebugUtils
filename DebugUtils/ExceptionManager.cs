@@ -239,10 +239,10 @@ namespace DebugUtils.Debugger {
             builder.AppendLine();
             builder.Append("CLR version: " + Environment.Version.ToString());
 
-            if(_appendWinSATScores && WinSAT.IsAvailable == true) {
+            if(_appendWinSATScores && WinSAT.IsAvailable) {
                 WinSAT winSAT = new WinSAT();
 
-                if(winSAT.LoadWinSAT() == true) {
+                if(winSAT.LoadWinSAT()) {
                     builder.AppendLine();
                     builder.AppendLine();
                     builder.Append("WinSAT scores");

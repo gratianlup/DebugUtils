@@ -52,10 +52,6 @@ namespace DebugUtils.Debugger {
 
         #endregion
 
-        #region Properties
-
-        #endregion
-
         #region Indexers
 
         public string this[string key] {

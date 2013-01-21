@@ -125,7 +125,7 @@ namespace DebugUtils.Debugger.Listeners {
             writer.Write("LINE:   ");
             writer.WriteLine(message.BaseMethod.Line);
             writer.Write("FILE:   ");
-            if(TruncateFile == true) {
+            if(TruncateFile) {
                 FileInfo fi = new FileInfo(message.BaseMethod.File);
                 writer.WriteLine(fi.Name);
             }
@@ -133,7 +133,7 @@ namespace DebugUtils.Debugger.Listeners {
                 writer.WriteLine(message.BaseMethod.File);
             }
 
-            if(UseStackInfo == true && message.HasStack == true) {
+            if(UseStackInfo && message.HasStack) {
                 writer.WriteLine("\nSTACK:");
 
                 for(int i = 0; i < message.StackSegments.Count; i++) {
@@ -144,7 +144,7 @@ namespace DebugUtils.Debugger.Listeners {
                     writer.WriteLine(message.StackSegments[i].Line);
                     writer.Write("FILE:   ");
 
-                    if(TruncateFile == true) {
+                    if(TruncateFile) {
                         if(message.StackSegments[i].File != null) {
                             FileInfo fi = new FileInfo(message.StackSegments[i].File);
                             writer.WriteLine(fi.Name);
@@ -158,7 +158,6 @@ namespace DebugUtils.Debugger.Listeners {
 
             writer.WriteLine("**************************************************\n");
             writer.Flush();
-
             HandledMessages++;
             return true;
         }
