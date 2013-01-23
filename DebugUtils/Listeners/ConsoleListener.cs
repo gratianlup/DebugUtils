@@ -1,14 +1,22 @@
-﻿// Copyright (c) Gratian Lup. All rights reserved.
+// Copyright (c) Gratian Lup. All rights reserved.
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
 //
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above
-//       copyright notice, this list of conditions and the following
-//       disclaimer in the documentation and/or other materials provided
-//       with the distribution.
+// * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+// 
+// * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following
+// disclaimer in the documentation and/or other materials provided
+// with the distribution.
+//
+// * The name "DebugUtils" must not be used to endorse or promote 
+// products derived from this software without prior written permission.
+//
+// * Products derived from this software may not be called "DebugUtils" nor 
+// may "DebugUtils" appear in their names without prior written 
+// permission of the author.
 //
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -80,7 +88,7 @@ namespace DebugUtils.Debugger.Listeners {
 
             string typeName = method.Substring(0, method.IndexOf(' '));
             string methodName = method.Substring(typeName.Length + 1,
-                                                method.Length - typeName.Length - 1);
+                                                 method.Length - typeName.Length - 1);
 
             Console.Write(typeName + " ");
             Console.ForegroundColor = methodColor;
@@ -91,17 +99,17 @@ namespace DebugUtils.Debugger.Listeners {
         private ConsoleColor GetMessageColor(DebugMessage message) {
             switch(message.Type) {
                 case DebugMessageType.Error: {
-                        return ConsoleColor.Red;
-                        break;
-                    }
+                    return ConsoleColor.Red;
+                    break;
+                }
                 case DebugMessageType.Warning: {
-                        return ConsoleColor.Yellow;
-                        break;
-                    }
+                    return ConsoleColor.Yellow;
+                    break;
+                }
                 default: {
-                        return ConsoleColor.Green;
-                        break;
-                    }
+                    return ConsoleColor.Green;
+                    break;
+                }
             }
         }
 
@@ -112,7 +120,6 @@ namespace DebugUtils.Debugger.Listeners {
         public override bool Open() {
             Console.WriteLine("Console listener opened at " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString());
             IsOpen = true;
-
             return true;
         }
 
@@ -121,7 +128,6 @@ namespace DebugUtils.Debugger.Listeners {
             WriteSeparator(ConsoleColor.Red);
             Console.WriteLine("Console listener closed at " + DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString());
             IsOpen = false;
-
             return true;
         }
 
@@ -132,8 +138,6 @@ namespace DebugUtils.Debugger.Listeners {
 
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write(message.Time.ToLongTimeString() + " | ");
-
-            // display message type
             Console.ForegroundColor = GetMessageColor(message);
 
             if(message.Type == DebugMessageType.Error) {
@@ -174,7 +178,6 @@ namespace DebugUtils.Debugger.Listeners {
             }
 
             Console.ResetColor();
-
             Console.Write("LINE:      ");
             Console.WriteLine(message.BaseMethod.Line);
             Console.ResetColor();
@@ -224,9 +227,7 @@ namespace DebugUtils.Debugger.Listeners {
 
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine();
-
             WriteSeparator(ConsoleColor.DarkGray);
-
             HandledMessages++;
             return true;
         }
