@@ -138,12 +138,8 @@ namespace DebugUtils.Debugger {
         /// Indicates whether or not the messages should be stored.
         /// </summary>
         public static bool StoreMessages {
-            get {
-                return _storeMessages;
-            }
-            set {
-                _storeMessages = value;
-            }
+            get { return _storeMessages; }
+            set { _storeMessages = value; }
         }
 
         /// The the capacity of the message store.
@@ -405,9 +401,7 @@ namespace DebugUtils.Debugger {
                         if(result.HasValue) {
                             result &= filters[i].AllowMessage(message);
                         }
-                        else {
-                            result = filters[i].AllowMessage(message);
-                        }
+                        else result = filters[i].AllowMessage(message);
 
                         if(result.HasValue && result.Value) {
                             return true;
@@ -418,9 +412,7 @@ namespace DebugUtils.Debugger {
                 if(result.HasValue) {
                     return result.Value;
                 }
-                else {
-                    return false;
-                }
+                else return false;
             }
 
             return false;
@@ -1439,9 +1431,7 @@ namespace DebugUtils.Debugger {
                 if(writer.BaseStream.CanWrite) {
                     serializer.Serialize(writer, messages);
                 }
-                else {
-                    return false;
-                }
+                else return false;
             }
             catch(Exception e) {
                 Console.WriteLine(e.Message);
@@ -1478,9 +1468,7 @@ namespace DebugUtils.Debugger {
                 if(reader.BaseStream.CanRead) {
                     messages = (List<DebugMessage>)serializer.Deserialize(reader);
                 }
-                else {
-                    return false;
-                }
+                else return false;
             }
             catch(Exception e) {
                 Console.WriteLine(e.Message);
@@ -1514,9 +1502,7 @@ namespace DebugUtils.Debugger {
                 if(memoryStream.CanWrite) {
                     serializer.Serialize(memoryStream, messages);
                 }
-                else {
-                    return false;
-                }
+                else return false;
             }
             catch(Exception e) {
                 Console.WriteLine(e.Message);
@@ -1569,9 +1555,7 @@ namespace DebugUtils.Debugger {
                     fileStream.Write(buffer, 0, (int)memoryStream.Length);
                     fileStream.Close();
                 }
-                else {
-                    return false;
-                }
+                else return false;
             }
             catch(Exception e) {
                 Console.WriteLine(e.Message);
@@ -1789,7 +1773,6 @@ namespace DebugUtils.Debugger {
         public static bool GenerateHtmlReport() {
             // save to a temporary File
             string filePath = Path.GetTempPath() + Path.GetRandomFileName() + ".htm";
-
             return GenerateHtmlReport(filePath, null, true);
         }
 
