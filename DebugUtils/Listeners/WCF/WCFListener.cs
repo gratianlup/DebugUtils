@@ -1,14 +1,22 @@
-﻿// Copyright (c) Gratian Lup. All rights reserved.
+// Copyright (c) Gratian Lup. All rights reserved.
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
 //
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above
-//       copyright notice, this list of conditions and the following
-//       disclaimer in the documentation and/or other materials provided
-//       with the distribution.
+// * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+// 
+// * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following
+// disclaimer in the documentation and/or other materials provided
+// with the distribution.
+//
+// * The name "DebugUtils" must not be used to endorse or promote 
+// products derived from this software without prior written permission.
+//
+// * Products derived from this software may not be called "DebugUtils" nor 
+// may "DebugUtils" appear in their names without prior written 
+// permission of the author.
 //
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -135,13 +143,13 @@ namespace DebugUtils.Debugger.Listeners {
         private void HandleResponse(ClientResponse response) {
             switch(response) {
                 case ClientResponse.Break: {
-                        System.Diagnostics.Debugger.Break();
-                        break;
-                    }
+                    System.Diagnostics.Debugger.Break();
+                    break;
+                }
                 case ClientResponse.Exit: {
-                        Environment.Exit(0);
-                        break;
-                    }
+                    Environment.Exit(0);
+                    break;
+                }
             }
         }
 
@@ -159,13 +167,11 @@ namespace DebugUtils.Debugger.Listeners {
 
                     // set the client name as the name of the assembly
                     clientName = Assembly.GetExecutingAssembly().FullName;
-
                     client.Open(clientName, System.Diagnostics.Process.GetCurrentProcess().MachineName,
                                            System.Diagnostics.Process.GetCurrentProcess().ProcessName);
 
                     // register for all events
                     client.Subscribe(clientName, EventType.All);
-
                     IsOpen = true;
                 }
                 catch(CommunicationException ce) {
