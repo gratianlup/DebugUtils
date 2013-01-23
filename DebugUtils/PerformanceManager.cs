@@ -289,7 +289,6 @@ namespace DebugUtils.Debugger {
             watch = new Stopwatch();
             iterations = new List<PerformanceIteration>();
             waitEvent = new ManualResetEvent(false);
-
             _maxTime = TimeSpan.MaxValue;
         }
 
@@ -384,7 +383,6 @@ namespace DebugUtils.Debugger {
             lock(lockObject) {
                 if(activeIteration != null && watch.IsRunning) {
                     watch.Stop();
-
                     activeIteration.StartTime = (long)(new TimeSpan(DateTime.Now.Ticks).TotalMilliseconds) - watch.ElapsedMilliseconds;
                     activeIteration.EndTime = activeIteration.StartTime + watch.ElapsedMilliseconds;
                     activeIteration.EndWorkingSet = GC.GetTotalMemory(false);
@@ -468,7 +466,6 @@ namespace DebugUtils.Debugger {
                     timer.Change(-1, -1);
                     timer.Dispose();
                     timer = null;
-
                     TimerCallback(null);
                 }
             }
@@ -629,7 +626,6 @@ namespace DebugUtils.Debugger {
             }
 
             _events.Remove(name);
-
             return true;
         }
 
@@ -685,7 +681,6 @@ namespace DebugUtils.Debugger {
             }
 
             _events[name].Stop();
-
             return _events[name].Iterations[_events[name].IterationCount - 1].Duration;
         }
 
