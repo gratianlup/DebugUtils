@@ -193,16 +193,10 @@ namespace DebugUtils.Debugger {
             if(path == null) {
                 // save the dump in the temp directory
                 path = Environment.GetEnvironmentVariable("TEMP");
-
-                // append assembly name
                 path += "\\" + Assembly.GetExecutingAssembly().GetName().Name + ".txt";
             }
 
             StringBuilder builder = new StringBuilder();
-
-            #region Basic info
-
-            // append application name
             builder.Append(AppDomain.CurrentDomain.FriendlyName);
             builder.AppendLine();
 
@@ -264,10 +258,7 @@ namespace DebugUtils.Debugger {
             builder.AppendLine();
             builder.AppendLine();
 
-            #endregion
-
-            #region Exception and stack info
-
+            // append exception info
             if(e != null) {
                 builder.Append("Exception: " + e.Message);
                 builder.AppendLine();
@@ -288,14 +279,8 @@ namespace DebugUtils.Debugger {
             }
 
             crashDetails = builder.ToString();
-
-            // stack
             builder.AppendLine();
             builder.Append("Stack trace:\r\n" + e.StackTrace);
-
-            #endregion
-
-            #region Custom data
 
             if(OnWriteDump != null) {
                 CustomDataEventArgs args = new CustomDataEventArgs();
@@ -310,14 +295,11 @@ namespace DebugUtils.Debugger {
                 }
             }
 
-            #endregion
-
-            #region Assemblies info
+            // loaded assembly info
 
             builder.Append("\r\n\r\nLoaded assemblies:\r\n\r\n");
-
-            // loaded assemblies
             activeDomain = AppDomain.CurrentDomain;
+            
             foreach(Assembly a in activeDomain.GetAssemblies()) {
                 builder.Append("Name: " + a.GetName().Name);
                 builder.AppendLine();
@@ -333,17 +315,14 @@ namespace DebugUtils.Debugger {
                 }
             }
 
-            #endregion
-
             // write to File
             StreamWriter writer = new StreamWriter(path);
+            _dumpPath = path;
 
             if(writer.BaseStream.CanWrite) {
                 writer.Write(builder.ToString());
                 writer.Close();
             }
-
-            _dumpPath = path;
         }
 
 
@@ -379,7 +358,6 @@ namespace DebugUtils.Debugger {
                     OnUnhandledException(this, args);
                 }
 
-                // write the dump File
                 if(_dump) {
                     WriteDump(args.ExceptionObject as Exception);
                 }
