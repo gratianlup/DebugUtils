@@ -39,7 +39,6 @@ namespace DebugUtils.Debugger {
         #region Fields
 
         private StringDictionary table;
-
         public ResourceManager ResourceManager;
 
         #endregion
@@ -55,9 +54,7 @@ namespace DebugUtils.Debugger {
         #region Indexers
 
         public string this[string key] {
-            get {
-                return GetString(key);
-            }
+            get { return GetString(key); }
         }
 
         #endregion
@@ -92,9 +89,7 @@ namespace DebugUtils.Debugger {
                 return false;
             }
 
-            // add the pair to the table
             table.Add(key, value);
-
             return true;
         }
 
