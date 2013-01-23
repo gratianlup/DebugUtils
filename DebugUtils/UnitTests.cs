@@ -298,9 +298,7 @@ namespace LGratian.Debugger.UnitTests
 			Debug.StoreMessages = false;
 
 			int count = Debug.StoredMessageCount;
-
 			Debug.Assert(false);
-
 			Assert.AreEqual(count + 1, Debug.StoredMessageCount,"Failed to interpret debug options attribute");
 		}
 	}
