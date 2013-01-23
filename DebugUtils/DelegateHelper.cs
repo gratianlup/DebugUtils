@@ -88,7 +88,6 @@ namespace DebugUtils.Debugger {
             builder.AppendLine();
             builder.Append("Methods: ");
             builder.Append(methods.Length);
-
             return builder.ToString();
         }
 
