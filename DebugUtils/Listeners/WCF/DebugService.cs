@@ -1,14 +1,22 @@
-﻿// Copyright (c) Gratian Lup. All rights reserved.
+// Copyright (c) Gratian Lup. All rights reserved.
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
 //
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above
-//       copyright notice, this list of conditions and the following
-//       disclaimer in the documentation and/or other materials provided
-//       with the distribution.
+// * Redistributions of source code must retain the above copyright
+// notice, this list of conditions and the following disclaimer.
+// 
+// * Redistributions in binary form must reproduce the above
+// copyright notice, this list of conditions and the following
+// disclaimer in the documentation and/or other materials provided
+// with the distribution.
+//
+// * The name "DebugUtils" must not be used to endorse or promote 
+// products derived from this software without prior written permission.
+//
+// * Products derived from this software may not be called "DebugUtils" nor 
+// may "DebugUtils" appear in their names without prior written 
+// permission of the author.
 //
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -61,170 +69,101 @@ namespace DebugUtils.Debugger.Listeners.WCF {
     internal partial class AppInfo : object, System.Runtime.Serialization.IExtensibleDataObject {
 
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-
         private string MachineNameField;
-
         private string MainWindowTitleField;
-
         private long PrivateMemorySizeField;
-
         private System.DateTime StartTimeField;
-
         private int ThreadNumberField;
-
         private System.TimeSpan TotalProcessorTimeField;
-
         private string UserNameField;
-
         private System.TimeSpan UserProcessorTimeField;
-
         private long VirtualMemorySizeField;
-
         private long WorkingSetField;
-
         private string WorkingDirectoryField;
-
         private OperatingSystem OSVersionField;
-
         private int ProcessorCountField;
 
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
+            get { return this.extensionDataField; }
+            set { this.extensionDataField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public string MachineName {
-            get {
-                return this.MachineNameField;
-            }
-            set {
-                this.MachineNameField = value;
-            }
+            get { return this.MachineNameField; }
+            set { this.MachineNameField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public string MainWindowTitle {
-            get {
-                return this.MainWindowTitleField;
-            }
-            set {
-                this.MainWindowTitleField = value;
-            }
+            get { return this.MainWindowTitleField; }
+            set { this.MainWindowTitleField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public long PrivateMemorySize {
-            get {
-                return this.PrivateMemorySizeField;
-            }
-            set {
-                this.PrivateMemorySizeField = value;
-            }
+            get { return this.PrivateMemorySizeField; }
+            set { this.PrivateMemorySizeField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public System.DateTime StartTime {
-            get {
-                return this.StartTimeField;
-            }
-            set {
-                this.StartTimeField = value;
-            }
+            get { return this.StartTimeField; }
+            set { this.StartTimeField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public int ThreadNumber {
-            get {
-                return this.ThreadNumberField;
-            }
-            set {
-                this.ThreadNumberField = value;
-            }
+            get { return this.ThreadNumberField; }
+            set { this.ThreadNumberField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public System.TimeSpan TotalProcessorTime {
-            get {
-                return this.TotalProcessorTimeField;
-            }
-            set {
-                this.TotalProcessorTimeField = value;
-            }
+            get { return this.TotalProcessorTimeField; }
+            set { this.TotalProcessorTimeField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public string UserName {
-            get {
-                return this.UserNameField;
-            }
-            set {
-                this.UserNameField = value;
-            }
+            get { return this.UserNameField; }
+            set { this.UserNameField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public System.TimeSpan UserProcessorTime {
-            get {
-                return this.UserProcessorTimeField;
-            }
-            set {
-                this.UserProcessorTimeField = value;
-            }
+            get { return this.UserProcessorTimeField; }
+            set { this.UserProcessorTimeField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public long VirtualMemorySize {
-            get {
-                return this.VirtualMemorySizeField;
-            }
-            set {
-                this.VirtualMemorySizeField = value;
-            }
+            get { return this.VirtualMemorySizeField; }
+            set { this.VirtualMemorySizeField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public long WorkingSet {
-            get {
-                return this.WorkingSetField;
-            }
-            set {
-                this.WorkingSetField = value;
-            }
+            get { return this.WorkingSetField; }
+            set { this.WorkingSetField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public string WorkingDirectory {
-            get {
-                return this.WorkingDirectoryField;
-            }
-            set {
-                this.WorkingDirectoryField = value;
-            }
+            get { return this.WorkingDirectoryField; } 
+            set { this.WorkingDirectoryField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public OperatingSystem OSVersion {
-            get {
-                return this.OSVersionField;
-            }
-            set {
-                this.OSVersionField = value;
-            }
+            get { return this.OSVersionField; }
+            set { this.OSVersionField = value; }
         }
 
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired = true)]
         public int ProcessorCount {
-            get {
-                return this.ProcessorCountField;
-            }
-            set {
-                this.ProcessorCountField = value;
-            }
+            get { return this.ProcessorCountField; }
+            set { this.ProcessorCountField = value; }
         }
     }
 }
