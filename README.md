@@ -17,4 +17,4 @@ It is written in *C#* and intended to be used by *.NET* projects.
 
 **Screenshots:**
 
-![Performance Viewer screenshot](http://www.gratianlup.com/documents/performance_viewer.PNG)  
+![Performance Viewer screenshot](http://www.gratianlup.com/documents/performance_viewer.PNGp)  
