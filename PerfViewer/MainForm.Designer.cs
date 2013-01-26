@@ -28,31 +28,32 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			this.perfViewer1 = new PerfViewerControl.PerfViewer();
-			this.SuspendLayout();
-			// 
-			// perfViewer1
-			// 
-			this.perfViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.perfViewer1.LoadPath = null;
-			this.perfViewer1.Location = new System.Drawing.Point(0, 0);
-			this.perfViewer1.Name = "perfViewer1";
-			this.perfViewer1.Size = new System.Drawing.Size(944, 597);
-			this.perfViewer1.TabIndex = 0;
-			// 
-			// Form1
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(944, 597);
-			this.Controls.Add(this.perfViewer1);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "Form1";
-			this.Text = "Performance Viewer";
-			this.Load += new System.EventHandler(this.Form1_Load);
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-			this.ResumeLayout(false);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.perfViewer1 = new PerfViewerControl.PerfViewer();
+            this.SuspendLayout();
+            // 
+            // perfViewer1
+            // 
+            this.perfViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.perfViewer1.LoadPath = null;
+            this.perfViewer1.Location = new System.Drawing.Point(0, 0);
+            this.perfViewer1.Name = "perfViewer1";
+            this.perfViewer1.Size = new System.Drawing.Size(944, 597);
+            this.perfViewer1.TabIndex = 0;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(944, 597);
+            this.Controls.Add(this.perfViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Performance Viewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
 
 		}
 

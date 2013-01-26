@@ -18,7 +18,6 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 [assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("LGratian.Debugger.snk")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("f465f44f-f3c4-419a-b7de-67899b5649ef")]

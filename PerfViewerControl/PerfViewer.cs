@@ -522,7 +522,6 @@ namespace PerfViewerControl {
             // set scroolbar maximum value
             GraphHostScroolbar.Maximum = Math.Max(0, AdjustToZoom(maxIterations * DefaultIterationDistance) - GraphHost.Width);
             GraphHostScroolbar.Visible = GraphHostScroolbar.Maximum > 0;
-
             GraphHost.Refresh();
         }
 
@@ -780,10 +779,10 @@ namespace PerfViewerControl {
             int width = AdjustToZoom(DefaultBulletSize) * 4;
 
             if((x + width) - delta >= GraphHost.Width) {
-                GraphHostScroolbar.Value = (x + width) - GraphHost.Width;
+                GraphHostScroolbar.Value = Math.Min((x + width) - GraphHost.Width, GraphHostScroolbar.Maximum);
             }
             else if(x - delta < 0) {
-                GraphHostScroolbar.Value = x;
+                GraphHostScroolbar.Value = Math.Min(x, GraphHostScroolbar.Maximum);
             }
         }
 
@@ -841,6 +840,11 @@ namespace PerfViewerControl {
         #region Exporting
 
         private void PreviewHtmlReport() {
+            if(performanceData == null) {
+                // data not loaded yet
+                return;
+            }
+
             PerformanceManager manager = new PerformanceManager();
             manager.Events = new Dictionary<string, PerformanceEvent>();
 
@@ -981,19 +985,6 @@ namespace PerfViewerControl {
                     MessageBox.Show("Failed to save performance data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-    }
-
-
-    public class GraphHostPanel : Panel {
-        public GraphHostPanel() {
-            // enable double-buffering
-            this.SetStyle(ControlStyles.DoubleBuffer |
-                          ControlStyles.UserPaint |
-                          ControlStyles.AllPaintingInWmPaint,
-                          true);
-
-            this.UpdateStyles();
         }
     }
 }
