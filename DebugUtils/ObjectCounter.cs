@@ -286,7 +286,7 @@ namespace DebugUtils.Debugger {
                     ObjectCounterNotifier.CounterMaximumCount = counter.MaximumCount;
                     ObjectCounterNotifier.Counter = this;
 
-                    if(ObjectCounterNotifier.Launch() == false) {
+                    if(!ObjectCounterNotifier.Launch()) {
                         Console.WriteLine("Couldn't launch IObjectCounterNotifier {0}", 
                                           ObjectCounterNotifier.GetType().Name);
                     }
@@ -753,7 +753,7 @@ namespace DebugUtils.Debugger {
 
             StreamWriter writer = new StreamWriter(path);
 
-            if(writer.BaseStream.CanWrite == false) {
+            if(!writer.BaseStream.CanWrite) {
                 return false;
             }
 

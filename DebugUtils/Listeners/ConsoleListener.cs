@@ -132,7 +132,7 @@ namespace DebugUtils.Debugger.Listeners {
         }
 
         public override bool DumpMessage(DebugMessage message) {
-            if(Enabled == false) {
+            if(!Enabled) {
                 return false;
             }
 

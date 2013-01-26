@@ -388,11 +388,11 @@ namespace DebugUtils.Debugger {
                 // show crash notifier
                 if(CrashNotifier != null) {
                     CrashNotifier.DumpFilePath = _dumpPath;
-                    CrashNotifier.DebugMessagesFilePath = _saveDebugMessages == false ? null : _debugMessagesPath;
+                    CrashNotifier.DebugMessagesFilePath = !_saveDebugMessages ? null : _debugMessagesPath;
                     CrashNotifier.CrashDetails = crashDetails;
                     CrashNotifier.UnhandledException = (Exception)args.ExceptionObject;
 
-                    if(CrashNotifier.Launch() == false) {
+                    if(!CrashNotifier.Launch()) {
                         Console.WriteLine("Couldn't launch ICrashNotifier {0}", CrashNotifier.GetType().Name);
                     }
                 }

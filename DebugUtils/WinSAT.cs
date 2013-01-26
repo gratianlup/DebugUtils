@@ -67,8 +67,8 @@ namespace DebugUtils.Debugger {
         private double _computerScore;
         public double ComputerScore {
             get {
-                if(loaded == false) {
-                    if(LoadWinSAT() == false) {
+                if(!loaded) {
+                    if(!LoadWinSAT()) {
                         return double.NaN;
                     }
                 }
@@ -80,8 +80,8 @@ namespace DebugUtils.Debugger {
         private double _cpuScore;
         public double CpuScore {
             get {
-                if(loaded == false) {
-                    if(LoadWinSAT() == false) {
+                if(!loaded) {
+                    if(!LoadWinSAT()) {
                         return double.NaN;
                     }
                 }
@@ -93,8 +93,8 @@ namespace DebugUtils.Debugger {
         private double _memoryScore;
         public double MemoryScore {
             get {
-                if(loaded == false) {
-                    if(LoadWinSAT() == false) {
+                if(!loaded) {
+                    if(!LoadWinSAT()) {
                         return double.NaN;
                     }
                 }
@@ -106,8 +106,8 @@ namespace DebugUtils.Debugger {
         private double _graphicsScore;
         public double GraphicsScore {
             get {
-                if(loaded == false) {
-                    if(LoadWinSAT() == false) {
+                if(!loaded) {
+                    if(!LoadWinSAT()) {
                         return double.NaN;
                     }
                 }
@@ -119,8 +119,8 @@ namespace DebugUtils.Debugger {
         private double _gamingGraphicsScore;
         public double GamingGraphicsScore {
             get {
-                if(loaded == false) {
-                    if(LoadWinSAT() == false) {
+                if(!loaded) {
+                    if(!LoadWinSAT()) {
                         return double.NaN;
                     }
                 }
@@ -132,8 +132,8 @@ namespace DebugUtils.Debugger {
         private double _diskScore;
         public double DiskScore {
             get {
-                if(loaded == false) {
-                    if(LoadWinSAT() == false) {
+                if(!loaded) {
+                    if(!LoadWinSAT()) {
                         return double.NaN;
                     }
                 }
@@ -153,7 +153,7 @@ namespace DebugUtils.Debugger {
         #region Private methods
 
         private bool LoadWinSATXML(string file) {
-            if(file == null || file.Length == 0 || File.Exists(file) == false) {
+            if(file == null || file.Length == 0 || !File.Exists(file)) {
                 return false;
             }
 

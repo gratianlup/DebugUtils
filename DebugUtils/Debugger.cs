@@ -394,7 +394,7 @@ namespace DebugUtils.Debugger {
                 bool? result = null;
 
                 for(int i = 0; i < filters.Count; i++) {
-                    if(filters[i].Enabled == false) {
+                    if(!filters[i].Enabled) {
                         continue;
                     }
 
@@ -447,11 +447,11 @@ namespace DebugUtils.Debugger {
             // send the message to all listeners
             for(int i = 0; i < listeners.Count; i++) {
                 // skip disabled listeners
-                if(listeners[i].Enabled == false) {
+                if(!listeners[i].Enabled) {
                     continue;
                 }
 
-                if(listeners[i].IsOpen == false) {
+                if(!listeners[i].IsOpen) {
                     listeners[i].Open();
                 }
 
@@ -471,7 +471,7 @@ namespace DebugUtils.Debugger {
             if(DebugMessageNotifier != null && DebugMessageNotifier.Enabled) {
                 DebugMessageNotifier.Message = message;
 
-                if(DebugMessageNotifier.Launch() == false) {
+                if(!DebugMessageNotifier.Launch()) {
                     Console.WriteLine("Couldn't launch IDebugMessageNotifier {0}", 
                                       DebugMessageNotifier.GetType().Name);
                 }
@@ -651,7 +651,7 @@ namespace DebugUtils.Debugger {
                     debugAttributeFound = true;
                 }
 
-                if(debugAttributeFound == false) {
+                if(!debugAttributeFound) {
                     // check if the base class has the debug attribute
                     attributes = topMethod.DeclaringType.GetCustomAttributes(typeof(DebugOptions), false);
 
@@ -702,7 +702,7 @@ namespace DebugUtils.Debugger {
                 }
             }
 
-            if(debugAttributeFound == false) {
+            if(!debugAttributeFound) {
                 settings.Debug = _debuggerEnabled;
                 settings.Assert = _breakOnFailedAssertion;
                 settings.Store = _storeMessages;
@@ -965,11 +965,11 @@ namespace DebugUtils.Debugger {
         public static void Assert(bool value, string format, params object[] args) {
             DebugSettings settings = GetSettings();
 
-            if(settings.Debug == false) {
+            if(!settings.Debug) {
                 return;
             }
 
-            if(value == false) {
+            if(!value) {
                 string formattedMessage = null;
                 format = GetFormatString(format);
 
@@ -1032,12 +1032,12 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            if(settings.Debug == false) {
+            if(!settings.Debug) {
                 return;
             }
 
             // check if object is of given type
-            if(type.IsInstanceOfType(obj) == false) {
+            if(!type.IsInstanceOfType(obj)) {
                 string formattedMessage = null;
                 format = GetFormatString(format);
 
@@ -1129,7 +1129,7 @@ namespace DebugUtils.Debugger {
 
                 DebugSettings settings = GetSettings();
                 
-                if(settings.Debug == false) {
+                if(!settings.Debug) {
                     return;
                 }
 
@@ -1181,7 +1181,7 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            if(settings.Debug == false) {
+            if(!settings.Debug) {
                 return;
             }
 
@@ -1233,7 +1233,7 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            if(settings.Debug == false) {
+            if(!settings.Debug) {
                 return;
             }
 
@@ -1285,7 +1285,7 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
 
-            if(settings.Debug == false) {
+            if(!settings.Debug) {
                 return;
             }
 
@@ -1342,7 +1342,7 @@ namespace DebugUtils.Debugger {
 
             DebugSettings settings = GetSettings();
             
-            if(settings.Debug == false) {
+            if(!settings.Debug) {
                 return;
             }
 
@@ -1589,7 +1589,7 @@ namespace DebugUtils.Debugger {
                 throw new ArgumentNullException("path");
             }
 
-            if(File.Exists(path) == false) {
+            if(!File.Exists(path)) {
                 return false;
             }
 
@@ -1601,7 +1601,7 @@ namespace DebugUtils.Debugger {
                 viewerPath = Environment.GetEnvironmentVariable(_debugMessageViewerEnvironmentVariable);
             }
 
-            if(viewerPath == null || File.Exists(viewerPath) == false) {
+            if(viewerPath == null || !File.Exists(viewerPath)) {
                 return false;
             }
 
@@ -1657,7 +1657,7 @@ namespace DebugUtils.Debugger {
 
             StreamWriter writer = new StreamWriter(path);
 
-            if(writer.BaseStream.CanWrite == false) {
+            if(!writer.BaseStream.CanWrite) {
                 return false;
             }
 

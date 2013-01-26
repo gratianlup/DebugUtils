@@ -158,7 +158,7 @@ namespace DebugUtils.Debugger.Listeners {
         #region Public methods
 
         public override bool Open() {
-            if(IsOpen == false) {
+            if(!IsOpen) {
                 try {
                     DebugServiceEvents debugEvents = new DebugServiceEvents();
                     InstanceContext context = new InstanceContext(debugEvents);
@@ -209,7 +209,7 @@ namespace DebugUtils.Debugger.Listeners {
 
 
         public override bool DumpMessage(DebugMessage message) {
-            if(IsOpen == false || _enabled == false) {
+            if(!IsOpen || !_enabled) {
                 return false;
             }
 

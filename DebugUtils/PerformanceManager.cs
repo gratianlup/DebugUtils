@@ -329,7 +329,7 @@ namespace DebugUtils.Debugger {
         #region Private methods
 
         private void TimerCallback(object stateInfo) {
-            if(timing == false) {
+            if(!timing) {
                 return;
             }
 
@@ -352,7 +352,7 @@ namespace DebugUtils.Debugger {
                     _manager.IterationNotifier.Event = this;
                     _manager.IterationNotifier.Iteration = activeIteration;
 
-                    if(_manager.IterationNotifier.Launch() == false) {
+                    if(!_manager.IterationNotifier.Launch()) {
                         Console.WriteLine("Couldn't launch IIterationNotifier {0}", _manager.IterationNotifier.GetType().Name);
                     }
                 }
@@ -613,7 +613,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         /// <param name="name">The name of the performance event.</param>
         public PerformanceEvent GetEvent(string name) {
-            if(IsValidKey(name) == false) {
+            if(!IsValidKey(name)) {
                 return null;
             }
 
@@ -626,7 +626,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         /// <param name="name">The name of the performance event.</param>
         public bool RemoveEvent(string name) {
-            if(IsValidKey(name) == false) {
+            if(!IsValidKey(name)) {
                 return false;
             }
 
@@ -639,7 +639,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         /// <param name="name">The name of the performance event.</param>
         public void StartEvent(string name) {
-            if(IsValidKey(name) == false) {
+            if(!IsValidKey(name)) {
                 return;
             }
 
@@ -654,7 +654,7 @@ namespace DebugUtils.Debugger {
         /// <param name="duration">The time to monitor the hit count.</param>
         /// <param name="onTimeEllapsed">The Method to call when the specified time elapses.</param>
         public void StartTimedEvent(string name, TimeSpan duration, TimeEllapsedDelegate onTimeEllapsed) {
-            if(IsValidKey(name) == false) {
+            if(!IsValidKey(name)) {
                 return;
             }
 
@@ -681,7 +681,7 @@ namespace DebugUtils.Debugger {
         /// TimeSpan.MaxValue, otherwise.
         /// </returns>
         public TimeSpan StopEvent(string name) {
-            if(IsValidKey(name) == false) {
+            if(!IsValidKey(name)) {
                 return TimeSpan.MaxValue;
             }
 
@@ -695,7 +695,7 @@ namespace DebugUtils.Debugger {
         /// </summary>
         /// <param name="name">The name of the performance event.</param>
         public void IncreaseHitCount(string name) {
-            if(IsValidKey(name) == false) {
+            if(!IsValidKey(name)) {
                 return;
             }
 
@@ -768,7 +768,7 @@ namespace DebugUtils.Debugger {
                 viewerPath = Environment.GetEnvironmentVariable(_performanceViewerEnvironmentVariable);
             }
 
-            if(viewerPath == null && File.Exists(viewerPath) == false) {
+            if(viewerPath == null && !File.Exists(viewerPath)) {
                 return false;
             }
 
@@ -808,7 +808,7 @@ namespace DebugUtils.Debugger {
 
             StreamWriter writer = new StreamWriter(path);
 
-            if(writer.BaseStream.CanWrite == false) {
+            if(!writer.BaseStream.CanWrite) {
                 return false;
             }
 

@@ -100,11 +100,12 @@ namespace DebugUtils.Debugger.Listeners {
         }
 
         public override bool DumpMessage(DebugMessage message) {
-            if(Enabled == false) {
+            if(!Enabled) {
                 return false;
             }
 
             writer.Write(message.Time.ToLongTimeString() + " | ");
+
             switch(message.Type) {
                 case DebugMessageType.Error: {
                     writer.Write("Error");
