@@ -41,6 +41,7 @@ using System.Windows.Forms;
 using DebugUtils.Debugger;
 using System.IO;
 using System.Xml.Serialization;
+using System.Windows.Forms.VisualStyles;
 
 namespace PerfViewerControl {
     public partial class PerfViewer : UserControl {
@@ -120,15 +121,12 @@ namespace PerfViewerControl {
             // add the events in the list
             foreach(PerformanceEvent perfEvent in performanceData) {
                 ListViewItem item = new ListViewItem();
-
                 item.Text = perfEvent.Name;
                 item.SubItems.Add(perfEvent.IterationCount.ToString());
                 item.SubItems.Add(FlagType.None.ToString());
                 item.SubItems.Add("false");
                 item.ImageKey = "tag_yellow.png";
                 item.Tag = perfEvent;
-
-                // add
                 EventList.Items.Add(item);
             }
 
@@ -152,7 +150,7 @@ namespace PerfViewerControl {
             dialog.Filter = "All files (*.*)|*.*";
 
             if(dialog.ShowDialog() == DialogResult.OK) {
-                if(LoadStandardData(dialog.FileName) == false) {
+                if(!LoadStandardData(dialog.FileName)) {
                     MessageBox.Show("Failed to load performance data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -183,7 +181,8 @@ namespace PerfViewerControl {
 
         private void EventList_DrawSubItem(object sender, DrawListViewSubItemEventArgs e) {
             if(e.ColumnIndex == 2) {
-                int x = e.Bounds.Left + EventList.Columns[e.ColumnIndex].Width / 2 - ListViewImageList.ImageSize.Width / 2;
+                int x = e.Bounds.Left + EventList.Columns[e.ColumnIndex].Width / 2 - 
+                        ListViewImageList.ImageSize.Width / 2;
                 int y = e.Bounds.Top;
                 string flagString = "flag_" + e.SubItem.Text.ToLowerInvariant() + ".png";
 
@@ -197,14 +196,16 @@ namespace PerfViewerControl {
                 }
             }
             else if(e.ColumnIndex == 3) {
-                int x = e.Bounds.Left + EventList.Columns[e.ColumnIndex].Width / 2 - ListViewImageList.ImageSize.Width / 2;
-                int y = e.Bounds.Top + e.Bounds.Height / 2 - CheckBoxRenderer.GetGlyphSize(e.Graphics, System.Windows.Forms.VisualStyles.CheckBoxState.UncheckedNormal).Height / 2;
+                int x = e.Bounds.Left + EventList.Columns[e.ColumnIndex].Width / 2 - 
+                        ListViewImageList.ImageSize.Width / 2;
+                int y = e.Bounds.Top + e.Bounds.Height / 2 - 
+                        CheckBoxRenderer.GetGlyphSize(e.Graphics, CheckBoxState.UncheckedNormal).Height / 2;
 
                 if(e.SubItem.Text == "true") {
-                    CheckBoxRenderer.DrawCheckBox(e.Graphics, new Point(x, y), System.Windows.Forms.VisualStyles.CheckBoxState.CheckedNormal);
+                    CheckBoxRenderer.DrawCheckBox(e.Graphics, new Point(x, y), CheckBoxState.CheckedNormal);
                 }
                 else {
-                    CheckBoxRenderer.DrawCheckBox(e.Graphics, new Point(x, y), System.Windows.Forms.VisualStyles.CheckBoxState.UncheckedNormal);
+                    CheckBoxRenderer.DrawCheckBox(e.Graphics, new Point(x, y), CheckBoxState.UncheckedNormal);
                 }
             }
             else {
@@ -238,7 +239,7 @@ namespace PerfViewerControl {
                     else {
                         item.SubItems[3].Text = "true";
 
-                        if(eventGraph.Contains(perfEvent) == false) {
+                        if(!eventGraph.Contains(perfEvent)) {
                             eventGraph.Add(perfEvent);
                         }
 
@@ -379,8 +380,6 @@ namespace PerfViewerControl {
 
                 item.Tag = iteration;
                 item.ImageKey = "bullet_go.png";
-
-                // insert into the list
                 IterationList.Items.Add(item);
 
                 // compute maximum/minimum duration
@@ -398,19 +397,21 @@ namespace PerfViewerControl {
             // change the background color for the min/max duration iterations
             if(maxIterationIndex >= 0) {
                 IterationList.Items[maxIterationIndex].SubItems[7].Text = FlagType.Red.ToString();
-                SetListItemBackColor(IterationList.Items[maxIterationIndex], StringToColor(FlagType.Red.ToString(), IterationList.BackColor));
-                SetIterationFlag(IterationList.Items[maxIterationIndex].Tag as PerformanceIteration, FlagType.Red.ToString());
+                SetListItemBackColor(IterationList.Items[maxIterationIndex], 
+                                     StringToColor(FlagType.Red.ToString(), IterationList.BackColor));
+                SetIterationFlag(IterationList.Items[maxIterationIndex].Tag as PerformanceIteration, 
+                                 FlagType.Red.ToString());
             }
 
             if(minIterationIndex >= 0) {
                 IterationList.Items[minIterationIndex].SubItems[7].Text = FlagType.Green.ToString();
-                SetListItemBackColor(IterationList.Items[minIterationIndex], StringToColor(FlagType.Green.ToString(), IterationList.BackColor));
-                SetIterationFlag(IterationList.Items[minIterationIndex].Tag as PerformanceIteration, FlagType.Green.ToString());
+                SetListItemBackColor(IterationList.Items[minIterationIndex],
+                                     StringToColor(FlagType.Green.ToString(), IterationList.BackColor));
+                SetIterationFlag(IterationList.Items[minIterationIndex].Tag as PerformanceIteration, 
+                                 FlagType.Green.ToString());
             }
 
             IterationList.EndUpdate();
-
-            // update the event info panel
             UpdateEventInfoPanel(perfEvent);
         }
 
@@ -452,7 +453,8 @@ namespace PerfViewerControl {
 
         private void IterationList_DrawSubItem(object sender, DrawListViewSubItemEventArgs e) {
             if(e.ColumnIndex == 7) {
-                int x = e.Bounds.Left + IterationList.Columns[e.ColumnIndex].Width / 2 - ListViewImageList.ImageSize.Width / 2;
+                int x = e.Bounds.Left + IterationList.Columns[e.ColumnIndex].Width / 2 - 
+                        ListViewImageList.ImageSize.Width / 2;
                 int y = e.Bounds.Top;
                 string flagString = "flag_" + e.SubItem.Text.ToLowerInvariant() + ".png";
 
@@ -516,11 +518,12 @@ namespace PerfViewerControl {
                 }
             }
 
-            // don't allow 0 maxDuration
+            // don't allow maxDuration  = 0
             graphMaxDuration = Math.Max(1, graphMaxDuration);
 
             // set scroolbar maximum value
-            GraphHostScroolbar.Maximum = Math.Max(0, AdjustToZoom(maxIterations * DefaultIterationDistance) - GraphHost.Width);
+            int max = AdjustToZoom(maxIterations * DefaultIterationDistance);
+            GraphHostScroolbar.Maximum = Math.Max(0, max - GraphHost.Width);
             GraphHostScroolbar.Visible = GraphHostScroolbar.Maximum > 0;
             GraphHost.Refresh();
         }
@@ -580,7 +583,8 @@ namespace PerfViewerControl {
                 maxHeight -= InfoZoneHeight;
 
                 // draw the info region
-                g.FillRectangle(new SolidBrush(InfoZoneBackColor), 0, maxHeight, GraphHost.Width, maxHeight + InfoZoneHeight);
+                g.FillRectangle(new SolidBrush(InfoZoneBackColor), 0, maxHeight, 
+                                GraphHost.Width, maxHeight + InfoZoneHeight);
             }
 
             if(selectedIterationItem != null && selectedIterationItem.Tag is PerformanceIteration) {
@@ -594,50 +598,24 @@ namespace PerfViewerControl {
                 int lastY = 0;
                 int currentX = 0;
                 int currentY = 0;
-
-                #region Drawing Color
-
-                // get drawing color
-                Color drawingColor;
                 Brush drawingBrush;
                 Pen drawingPen;
-
-                if(eventGraphColors.ContainsKey(perfEvent)) {
-                    drawingColor = eventGraphColors[perfEvent];
-                }
-                else {
-                    // set default
-                    drawingColor = DefaultGraphColor;
-                }
-
+                Color drawingColor = GetDrawingColor(perfEvent);
                 drawingBrush = new SolidBrush(drawingColor);
                 drawingPen = new Pen(drawingColor, 1.5f);
 
-                #endregion
-
                 if(drawAverageBar && perfEvent.AverageDuration.HasValue) {
-                    // disable antialiasing while drawing the average line
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-
-                    Pen linePen = new Pen(drawingColor, 1.0f);
-                    int lineY = maxHeight - (int)Math.Ceiling((perfEvent.AverageDuration.Value.TotalMilliseconds / graphMaxDuration) *
-                               (double)(maxHeight - bulletSize / 2));
-
-
-                    linePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                    g.DrawLine(linePen, 0, lineY, GraphHost.Width, lineY);
-
-                    // reenable antialiasing
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                    drawingColor = DrawAverageBar(g, bulletSize, maxHeight, perfEvent, drawingColor);
                 }
 
+                // draw each component of the event
                 for(int iterationIndex = startIndex; iterationIndex < perfEvent.IterationCount; iterationIndex++) {
                     PerformanceIteration iteration = perfEvent.Iterations[iterationIndex];
 
+                    double iterationDuration = iteration.Duration.TotalMilliseconds;
                     currentX = leftMargin + iterationIndex * iterationDistance + startX;
-                    currentY = maxHeight - (int)Math.Ceiling((iteration.Duration.TotalMilliseconds / graphMaxDuration) *
-                               (double)(maxHeight - bulletSize / 2));
-
+                    currentY = maxHeight - (int)Math.Ceiling((iterationDuration / graphMaxDuration) *
+                                                             (double)(maxHeight - bulletSize / 2));
                     if(iterationIndex == startIndex) {
                         lastX = currentX;
                         lastY = currentY;
@@ -650,38 +628,23 @@ namespace PerfViewerControl {
 
                     // draw info
                     if(drawInfo) {
-                        if(iterationIndex > lastInfoDrawn) {
-                            string info = iterationIndex.ToString();
-                            SizeF infoSize = g.MeasureString(info, this.Font);
-                            float infoX = currentX - infoSize.Width / 2;
-                            float infoY = maxHeight + InfoZoneHeight / 2 - infoSize.Height / 2 + 2;
-
-                            // draw string
-                            g.DrawString(info, this.Font, Brushes.Black, infoX, infoY);
-
-                            // prevent redrawing the same info again4
-                            lastInfoDrawn = iterationIndex;
-                        }
-
-                        if(IsMinDuration(iterationIndex, perfEvent)) {
-                            Pen p = new Pen(Brushes.LightGray);
-                            p.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-                            g.DrawLine(p, currentX, currentY, currentX, maxHeight);
-                        }
+                        lastInfoDrawn = DrawEventInfo(g, maxHeight, lastInfoDrawn, perfEvent, 
+                                                      currentX, currentY, iterationIndex);
                     }
 
                     // draw line
                     g.DrawLine(drawingPen, lastX, lastY, currentX, currentY);
 
                     // draw bullet
-                    g.FillEllipse(drawingBrush, currentX - bulletSize / 2, currentY - bulletSize / 2,
-                                           bulletSize, bulletSize);
+                    g.FillEllipse(drawingBrush, currentX - bulletSize / 2,
+                                  currentY - bulletSize / 2, bulletSize, bulletSize);
 
                     // check if the iteration has a color associated with it
                     if(iterationFlagMappings.ContainsKey(iteration)) {
-                        g.DrawEllipse(new Pen(StringToColorStrong(iterationFlagMappings[iteration], Color.Empty), (float)AdjustToZoom(2.0)),
-                                               currentX - bulletSize / 2 - 1, currentY - bulletSize / 2 - 1,
-                                               bulletSize + 1, bulletSize + 1);
+                        Color penColor = StringToColorStrong(iterationFlagMappings[iteration], Color.Empty);
+                        g.DrawEllipse(new Pen(penColor, (float)AdjustToZoom(2.0)),
+                                      currentX - bulletSize / 2 - 1, currentY - bulletSize / 2 - 1,
+                                      bulletSize + 1, bulletSize + 1);
                     }
 
                     lastX = currentX;
@@ -690,7 +653,7 @@ namespace PerfViewerControl {
                     // put the iteration in the list
                     Point location = new Point(currentX, currentY);
 
-                    if(iterationLocations.ContainsKey(location) == false) {
+                    if(!iterationLocations.ContainsKey(location)) {
                         iterationLocations.Add(location, iteration);
                     }
 
@@ -701,6 +664,60 @@ namespace PerfViewerControl {
                 }
             }
         }
+
+        private int DrawEventInfo(Graphics g, int maxHeight, int lastInfoDrawn, PerformanceEvent perfEvent, 
+                                  int currentX, int currentY, int iterationIndex) {
+            if(iterationIndex > lastInfoDrawn) {
+                string info = iterationIndex.ToString();
+                SizeF infoSize = g.MeasureString(info, this.Font);
+                float infoX = currentX - infoSize.Width / 2;
+                float infoY = maxHeight + InfoZoneHeight / 2 - infoSize.Height / 2 + 2;
+
+                // draw string
+                g.DrawString(info, this.Font, Brushes.Black, infoX, infoY);
+
+                // prevent redrawing the same info again4
+                lastInfoDrawn = iterationIndex;
+            }
+
+            if(IsMinDuration(iterationIndex, perfEvent)) {
+                Pen p = new Pen(Brushes.LightGray);
+                p.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+                g.DrawLine(p, currentX, currentY, currentX, maxHeight);
+            }
+            return lastInfoDrawn;
+        }
+
+        private Color DrawAverageBar(Graphics g, int bulletSize, int maxHeight, 
+                                     PerformanceEvent perfEvent, Color drawingColor) {
+            // disable antialiasing while drawing the average line
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+
+            Pen linePen = new Pen(drawingColor, 1.0f);
+            int lineY = maxHeight - (int)Math.Ceiling((perfEvent.AverageDuration.Value.TotalMilliseconds / graphMaxDuration) *
+                       (double)(maxHeight - bulletSize / 2));
+
+            linePen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            g.DrawLine(linePen, 0, lineY, GraphHost.Width, lineY);
+
+            // reenable antialiasing
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            return drawingColor;
+        }
+
+        private Color GetDrawingColor(PerformanceEvent perfEvent) {
+            Color drawingColor;
+
+            if(eventGraphColors.ContainsKey(perfEvent)) {
+                drawingColor = eventGraphColors[perfEvent];
+            }
+            else {
+                // set default
+                drawingColor = DefaultGraphColor;
+            }
+            return drawingColor;
+        }
+
         private void GraphHostScroolbar_Scroll(object sender, ScrollEventArgs e) {
             UpdateGraph();
         }
@@ -849,7 +866,7 @@ namespace PerfViewerControl {
             manager.Events = new Dictionary<string, PerformanceEvent>();
 
             foreach(PerformanceEvent perfEvent in performanceData) {
-                if(manager.Events.ContainsKey(perfEvent.Name) == false) {
+                if(!manager.Events.ContainsKey(perfEvent.Name)) {
                     manager.Events.Add(perfEvent.Name, perfEvent);
                 }
             }
@@ -871,13 +888,14 @@ namespace PerfViewerControl {
                 manager.Events = new Dictionary<string, PerformanceEvent>();
 
                 foreach(PerformanceEvent perfEvent in performanceData) {
-                    if(manager.Events.ContainsKey(perfEvent.Name) == false) {
+                    if(!manager.Events.ContainsKey(perfEvent.Name)) {
                         manager.Events.Add(perfEvent.Name, perfEvent);
                     }
                 }
 
-                if(manager.GenerateHtmlSummary(dialog.FileName, null, false) == false) {
-                    MessageBox.Show("Failed to save report.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(!manager.GenerateHtmlSummary(dialog.FileName, null, false)) {
+                    MessageBox.Show("Failed to save report.", "Error", 
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -912,7 +930,8 @@ namespace PerfViewerControl {
                     }
                 }
                 catch(Exception e) {
-                    MessageBox.Show("Failed to save CSV file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to save CSV file.", "Error", 
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally {
                     if(writer != null) {
@@ -976,13 +995,14 @@ namespace PerfViewerControl {
                 manager.Events = new Dictionary<string, PerformanceEvent>();
 
                 foreach(PerformanceEvent perfEvent in performanceData) {
-                    if(manager.Events.ContainsKey(perfEvent.Name) == false) {
+                    if(!manager.Events.ContainsKey(perfEvent.Name)) {
                         manager.Events.Add(perfEvent.Name, perfEvent);
                     }
                 }
 
-                if(manager.SerializeEvents(dialog.FileName) == false) {
-                    MessageBox.Show("Failed to save performance data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(!manager.SerializeEvents(dialog.FileName)) {
+                    MessageBox.Show("Failed to save performance data.", "Error", 
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
