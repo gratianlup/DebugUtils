@@ -14,3 +14,7 @@ It is written in *C#* and intended to be used by *.NET* projects.
 - Module to handle and report critical exceptions.  
 - Module for monitoring the performance of the application.  
 - Application to view the performance results.
+- 
+**Screenshots:**
+
+![SmartFlip screenshot](http://www.gratianlup.com/documents/performance_viewer.PNG)  
