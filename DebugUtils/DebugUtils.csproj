@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DebugUtils</RootNamespace>
     <AssemblyName>DebugUtils</AssemblyName>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -25,7 +25,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Build\Debug\DebugUtils.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <OutputPath>..\Build\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -36,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
     <OutputPath>..\Build\Release\</OutputPath>
     <DocumentationFile>..\Build\Release\DebugUtils.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>DebugUtils.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -72,6 +76,7 @@
     <Compile Include="WinSAT.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DebugUtils.pfx" />
     <None Include="Listeners\WCF\output.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
