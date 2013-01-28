@@ -4,7 +4,7 @@ DebugUtils
 A library implementing various utilities for logging, debugging and performance analysis.  
 It is written in *C#* and intended to be used by *.NET* projects.  
 
-**Features:**  
+### Features:  
 - Logging with various types of messages (debug, info, warning, error).  
 - Automatic inclusion of stack trace and system information.  
 - Built-in clients for logging to the console, to a file or to a WCF service.  
@@ -15,6 +15,6 @@ It is written in *C#* and intended to be used by *.NET* projects.
 - Module for monitoring the performance of the application.  
 - Application to view the performance results.
 
-**Screenshots:**
+### Screenshots:  
 
 ![Performance Viewer screenshot](http://www.gratianlup.com/documents/performance_viewer2.PNG)  
