@@ -60,11 +60,7 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            if(Enabled && message.Type == DebugMessageType.Error) {
-                return true;
-            }
-
-            return false;
+            return Enabled && (message.Type == DebugMessageType.Error);
         }
 
         #endregion
@@ -92,11 +88,7 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            if(Enabled && message.Type == DebugMessageType.Warning) {
-                return true;
-            }
-
-            return false;
+            return Enabled && (message.Type == DebugMessageType.Warning);
         }
 
         #endregion
@@ -124,11 +116,7 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            if(Enabled && message.Type == DebugMessageType.Unknown) {
-                return true;
-            }
-
-            return false;
+            return Enabled && (message.Type == DebugMessageType.Unknown);
         }
 
         #endregion
@@ -178,11 +166,7 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            if(Enabled && message.BaseMethod.DeclaringNamespace == _namespace) {
-                return true;
-            }
-
-            return false;
+            return Enabled && (message.BaseMethod.DeclaringNamespace == _namespace);
         }
 
         #endregion
@@ -232,11 +216,7 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            if(Enabled && message.BaseMethod.DeclaringObject == _object) {
-                return true;
-            }
-            
-            return false;
+            return Enabled && (message.BaseMethod.DeclaringObject == _object);
         }
 
         #endregion
@@ -286,11 +266,7 @@ namespace DebugUtils.Debugger.Filters {
                 return true;
             }
 
-            if(Enabled && message.BaseMethod.DeclaringObject == _method) {
-                return true;
-            }
-
-            return false;
+            return Enabled && (message.BaseMethod.DeclaringObject == _method);
         }
 
         #endregion
